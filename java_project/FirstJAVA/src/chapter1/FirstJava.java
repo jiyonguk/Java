@@ -8,6 +8,10 @@ public class FirstJava {
 			
 			System.out.println("Hellow~!! JAVA~!!");
 			System.out.println("542452452" + "Hellow~!! JAVA~!!");
+			System.out.println(1+1);
+			
+			
+			
 	}
 
 }
