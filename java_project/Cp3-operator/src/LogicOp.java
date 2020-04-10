@@ -32,7 +32,7 @@ public class LogicOp {
 		//기혼자
 		//에게만 메시지를 출력합니다.
 		
-		int age = 20;
+		int age = 29;
 		char gender = 'w';
 		boolean mCheck = true;
 		
