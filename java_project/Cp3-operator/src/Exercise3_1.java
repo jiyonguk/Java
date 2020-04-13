@@ -1,18 +1,27 @@
 
 public class Exercise3_1 {
 
-	public static void main(String[]args) {
+	public static void main(String[] args) {
 
-		int fahrenheit =100;
+		/*
+		 * 셋째 자리에서 반올림 해야한다
+		 */
+		int f = 100;
+		float c = (int)(((5/9F * (f - 32))*100)+0.5)/100f;
+		//float temp = c/100;
+		//float result = 0;
 
-		float celcius = float(5/9) *(fahrenheit - 32));
-		
-		//'C =5/9 ×(F - 32)'
+		/*if ((int) temp % 10 >= 5) { // 5보다 컸을 때
 
-		System.out.println("Fahrenheit:"+fahrenheit);
+			temp = temp / 10;
+			++temp;
+			result = temp / 100f;
 
-		System.out.println("Celcius:"+celcius);
+		} else { // 5보다 작았을 때
+			temp = temp / 10;
+			result = temp / 100f;
+		}*/
 
-		}
-
-		}
+		System.out.println("답 = " + c );
+	}
+}
