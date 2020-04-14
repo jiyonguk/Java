@@ -11,7 +11,7 @@ public class WhileExam {
 //			num++;
 //		}
 //		System.out.println(sum);
-		System.out.println("--------------------");
+//		System.out.println("--------------------");
 
 		int num = 0;
 		int i = 100;
