@@ -1,4 +1,4 @@
-package reFruit;
+package ex;
 
 public class ex10 {
 
