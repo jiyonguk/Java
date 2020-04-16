@@ -6,5 +6,16 @@ public class Card {
 	
 	String kind;
 	int number;
+	
+	//overloading
+	Card(){}
+	
+	Card(String type, int num){
+		kind=type;
+		number=num;
+	}
+	
+	
+	//생성자를 통한 초기화의 경우 final을 쓸수있다
 
 }
