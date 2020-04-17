@@ -6,8 +6,11 @@ public class Ex3_4M {
 		Ex3_4 dec = new Ex3_4();
 		
 		
-		dec.Dec(4);
+		dec.Dec(5);
 		System.out.println(dec.dec);
+		
+		
+	
 		
 
 	}
