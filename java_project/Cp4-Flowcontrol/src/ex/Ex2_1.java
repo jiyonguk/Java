@@ -60,8 +60,8 @@ public class Ex2_1 {
 			
 		}
 			int sum=0;
-		for(int i=1; i<11; i++) {
-			sum += i;
+		for(int j=1; j<11; j++) {
+			sum += j;
 			System.out.println(sum);
 		}
 	}
