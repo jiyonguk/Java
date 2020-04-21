@@ -1,41 +1,61 @@
 package ex;
 
-//import java.util.Scanner;
+import java.util.Scanner;
 
 public class PhoneInfor {
+
 	String name;
 	String phoneNumber;
 	String birthday;
+	
 
-	void add(String n, String p, String b) {
-
+	
+	PhoneInfor(String n,String p,String b){
 		name = n;
 		phoneNumber = p;
 		birthday = b;
 
+
+		
 	}
-
-	void add(String n, String p) {
-
+	PhoneInfor(String n,String p){
 		name = n;
 		phoneNumber = p;
+		
 	}
 	
+	void showData() {
+		System.out.println("이름 : "+name+"핸드폰 : "+phoneNumber
+				+"생년월일 : "+birthday);
+	}
 	public static void main(String[]args) {
-		PhoneInfor p1 = new PhoneInfor();
-		PhoneInfor p2 = new PhoneInfor();
 		
-		p1.add("지용욱","010","940416");
 		
-		p2.add("지용욱","010");
 		
-		System.out.println(p1.name);
-		System.out.println(p1.phoneNumber);
-		System.out.println(p1.birthday);
 		
-		System.out.println(p2.name);
-		System.out.println(p2.phoneNumber);
-		System.out.println(p2.birthday);
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("이름");
+		String n1 = sc.nextLine();
+		System.out.println("핸드폰번호");
+		String p1 = sc.nextLine();
+		System.out.println("생년월일");
+		String b1 = sc.nextLine();
+		
+		
+		
+		PhoneInfor ph = new PhoneInfor(n1,p1,b1);
+		
+		PhoneInfor ph1 = new PhoneInfor(n1,p1);
+		
+		
+		ph.showData();
+		ph1.showData();
+		
+		
+		
+	}
+		
+
 	}
 
-}
