@@ -46,7 +46,7 @@ public class ArrayEx1 {
 
 		Scanner sc = new Scanner(System.in);
 
-		int[] value = new int[10];
+		int[] value = new int[5];
 
 		for (int i = 0; i < value.length; i++) {
 			value[i] = sc.nextInt();
