@@ -21,8 +21,7 @@ public class PhoneManager {
 	PhoneInfor[] data;
 
 	int cnt;
-	
-	
+	Scanner sc = new Scanner(System.in);
 
 	PhoneManager() {
 		data = new PhoneInfor[100];
@@ -57,19 +56,34 @@ public class PhoneManager {
 		cnt++;
 
 	}
-	
+
 	void searchInfor(PhoneInfor info) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("찾으실이름을 입력해주세요");
+		System.out.println("찾으실 이름을 입력해주세요");
 		String name = sc.nextLine();
-		for(int i=0; i<cnt; i++) {
-			if(data[i].name.equals(name)) {
+
+		for (int i = 0; i < cnt; i++) {
+			if (data[i].name.equals(name)) {
 				info = data[i];
-			}else {
-				System.out.println("정보가 없습니다");
+			} else {
+				System.out.println("찾으시는 정보가 없습니다");
+				break;
+			}
+
+		}
+
+	}
+
+	void delInfor(PhoneInfor info) {
+		System.out.println("삭제하실 이름을 입력해주세요");
+		String name = sc.nextLine();
+		
+		for(int i = 0; i<cnt; i++) {
+			if (data[i].name.equals(name)) {
+				info = data[i];
 			}
 		}
 		
+
 	}
 
 }
