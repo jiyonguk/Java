@@ -8,8 +8,9 @@ public class ArrayEx2 {
 			for (int j = 0; j < arr[i].length; j++) {
 				arr[i][j] += add;
 				System.out.println(arr[i][j]);
+				
 			}
-
+	
 	}
 
 	public static void main(String[] args) {

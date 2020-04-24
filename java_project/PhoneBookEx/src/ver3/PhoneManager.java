@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class PhoneManager {
 
 	PhoneInfor[] data;
-
+	
 	int cnt;
 	Scanner sc = new Scanner(System.in);
 
@@ -30,9 +30,10 @@ public class PhoneManager {
 	}
 
 	PhoneInfor createInstance() {
-
+		
 		PhoneInfor info = null;
 		Scanner sc = new Scanner(System.in);
+		System.out.println("---------------");
 		System.out.println("이름을 입력해주세요");
 		String name = sc.nextLine();
 		System.out.println("전화번호를 입력해주세요");
@@ -40,6 +41,7 @@ public class PhoneManager {
 		System.out.println("생일을 입력해주세요");
 		String birthday = sc.nextLine();
 		System.out.println("정보를 저장합니다");
+		System.out.println("---------------");
 
 		if (birthday.trim().isEmpty() || birthday == null) {
 			info = new PhoneInfor(name, phoneNumber);
@@ -60,29 +62,42 @@ public class PhoneManager {
 	void searchInfor(PhoneInfor info) {
 		System.out.println("찾으실 이름을 입력해주세요");
 		String name = sc.nextLine();
-
+		
 		for (int i = 0; i < cnt; i++) {
 			if (data[i].name.equals(name)) {
 				info = data[i];
-			} else {
-				System.out.println("찾으시는 정보가 없습니다");
+				info.showInfo();
 				break;
 			}
-
+			
+			
 		}
+		
 
 	}
 
 	void delInfor(PhoneInfor info) {
+		
 		System.out.println("삭제하실 이름을 입력해주세요");
 		String name = sc.nextLine();
 		
-		for(int i = 0; i<cnt; i++) {
+		for (int i = 0; i < cnt; i++) {
 			if (data[i].name.equals(name)) {
-				info = data[i];
+				for (int j = data.length - 1; j > i; j--) {
+					data[j-1] = data[j];
+				}
+				System.out.println("삭제되었습니다");
+				cnt--;
+				break;
 			}
 		}
-		
+
+	}
+
+	void showAllData() {
+
+		for (int i = 0; i < cnt; i++)
+			data[i].showInfo();
 
 	}
 

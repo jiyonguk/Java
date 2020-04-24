@@ -22,7 +22,7 @@ public class PhoneManager {
 		
 		PhoneInfor info = null;					//PhoneInfor타입의 값을 반환하기위해 초기화
 		Scanner sc = new Scanner(System.in);	
-		System.out.println("정보를 저장합니다");
+		System.out.println("정보를 저장하겠습다");
 		System.out.println("이름을 입력해주세요");
 		String name = sc.nextLine();
 		System.out.println("전화번호를 입력해주세요");
