@@ -1,6 +1,6 @@
 package ver5;
 
-import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class PhoneBookMain {
 
@@ -9,15 +9,22 @@ public class PhoneBookMain {
 	public static void main(String[] args) {
 		PhoneBookManager manager = PhoneBookManager.getInstance();		//불필요한 변수 생성과정 분리
 		
-		Scanner sc = new Scanner(System.in);
-		
 		while (true) {
 			
 			Menu.showMenu();
 			
-			int selectNum = sc.nextInt();
+			int selectNum=0;
 			
-			sc.nextLine();
+			try {
+			selectNum = manager.sc.nextInt();
+			manager.sc.nextLine();
+			
+			}catch(InputMismatchException e) {
+				System.out.println("정상적인 메뉴번호의 입력이 되지 않았습니다.");
+				System.out.println("메뉴를 다시 입력해주세요");
+				manager.sc.nextLine();
+				continue;
+			}
 			
 			switch(selectNum) {
 			case MenuInterface.ADD:

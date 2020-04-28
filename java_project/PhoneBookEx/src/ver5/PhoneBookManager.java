@@ -1,5 +1,6 @@
 package ver5;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /*Project : ver 0.30
@@ -16,16 +17,13 @@ import java.util.Scanner;
 재정리 2번이 삭제되었다면 3번 이후 데이터들의 주소 값이 -1 처리되어 재저장.
 */
 public class PhoneBookManager {
-	
-	
-	private static PhoneBookManager manager = new PhoneBookManager(); 
-	
+
+	private static PhoneBookManager manager = new PhoneBookManager();
+
 	public static PhoneBookManager getInstance() {
 		return manager;
 	}
-	
-	
-	
+
 	final PhoneInfor[] pBooks;
 
 	// 입력된 친구의 정보 개수 -> 입력된 배열의 요소 개수
@@ -72,45 +70,58 @@ public class PhoneBookManager {
 
 		PhoneInfor info = null;
 
-		System.out.println("1.대학친구");
-		System.out.println("2.회사친구");
-		int num = sc.nextInt();
-		sc.nextLine();
+		while (true) {
+			System.out.println("1.대학친구");
+			System.out.println("2.회사친구");
+			int num = 0;
+			try {
+				num = sc.nextInt();
+				sc.nextLine();
+			} catch (InputMismatchException e) {
+				System.out.println("정상적인 메뉴번호의 입력이 되지 않았습니다.");
+				System.out.println("메뉴를 다시 입력해주세요");
+				manager.sc.nextLine();
+				continue;
 
-		System.out.println("친구의 정보를 저장하기 위한 데이터를 입력합니다.");
+			}
 
-		System.out.println("이름을 입력해주세요. >>");
-		String name = sc.nextLine();
+			System.out.println("친구의 정보를 저장하기 위한 데이터를 입력합니다.");
 
-		System.out.println("전화번호를 입력해주세요. >>");
-		String phoneNumber = sc.nextLine();
+			System.out.println("이름을 입력해주세요. >>");
+			String name = sc.nextLine();
 
-		System.out.println("생일을 입력해주세요. >>");
-		String birthday = sc.nextLine();
+			System.out.println("전화번호를 입력해주세요. >>");
+			String phoneNumber = sc.nextLine();
 
-		// 사용자의 입력 데이터에 따라 인스턴스 생성 방법 구분
-		// trim : 문자열의 양쪽 공백을 제거
-		// isEmpty : 비어있음
+			System.out.println("생일을 입력해주세요. >>");
+			String birthday = sc.nextLine();
 
-		if (num == 1) {
+			// 사용자의 입력 데이터에 따라 인스턴스 생성 방법 구분
+			// trim : 문자열의 양쪽 공백을 제거
+			// isEmpty : 비어있음
 
-			System.out.println("주소를 입력해주세요");
-			String address = sc.nextLine();
-			System.out.println("이메일을 입력해주세요");
-			String email = sc.nextLine();
-			System.out.println("전공을 입력해주세요");
-			String major = sc.nextLine();
-			System.out.println("학년 입력해주세요");
-			String year = sc.nextLine();
-			info = new PhoneUnivInfor(name, phoneNumber, birthday, address, email, major, Integer.parseInt(year));
-		} else if (num == 2) {
-			System.out.println("주소를 입력해주세요");
-			String address = sc.nextLine();
-			System.out.println("이메일을 입력해주세요");
-			String email = sc.nextLine();
-			System.out.println("회사를 입력해주세요");
-			String company = sc.nextLine();
-			info = new PhoneCompanyInfor(name, phoneNumber, birthday, address, email, company);
+			if (num == MenuInterface.Univ) {
+
+				System.out.println("주소를 입력해주세요");
+				String address = sc.nextLine();
+				System.out.println("이메일을 입력해주세요");
+				String email = sc.nextLine();
+				System.out.println("전공을 입력해주세요");
+				String major = sc.nextLine();
+				System.out.println("학년 입력해주세요");
+				String year = sc.nextLine();
+				info = new PhoneUnivInfor(name, phoneNumber, birthday, address, email, major, year);
+				break;
+			} else if (num == MenuInterface.Company) {
+				System.out.println("주소를 입력해주세요");
+				String address = sc.nextLine();
+				System.out.println("이메일을 입력해주세요");
+				String email = sc.nextLine();
+				System.out.println("회사를 입력해주세요");
+				String company = sc.nextLine();
+				info = new PhoneCompanyInfor(name, phoneNumber, birthday, address, email, company);
+				break;
+			}
 		}
 
 		return info;
@@ -198,4 +209,32 @@ public class PhoneBookManager {
 
 	}
 
+	void editInfo() {
+
+		PhoneInfor info = null;
+		System.out.println("수정하실 정보의 이름을 입력해주세요.");
+		String name = sc.nextLine();
+		int searchIndex = searchIndex(name);
+
+		if (searchIndex < 0) {
+			System.out.println("이름의 정보가 없습니다.");
+			return;
+		} else {
+			System.out.println("핸드폰번호를 입력해주세요");
+			String phoneNumber = sc.nextLine();
+			System.out.println("생일을 입력해주세요");
+			String birthday = sc.nextLine();
+			if (pBooks[searchIndex] instanceof PhoneCompanyInfor) {
+				System.out.println("주소를 입력해주세요");
+				String address = sc.nextLine();
+				System.out.println("이메일을 입력해주세요");
+				String email = sc.nextLine();
+				System.out.println("회사를 입력해주세요");
+				String company = sc.nextLine();
+				info = new PhoneCompanyInfor(name, phoneNumber, birthday, address, email, company);
+			}
+
+		}
+
+	}
 }

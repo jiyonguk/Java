@@ -6,9 +6,9 @@ public class PhoneUnivInfor extends PhoneInfor {
 	String address;
 	String email;
 	String major;
-	int year;
+	String year;
 
-	PhoneUnivInfor(String name, String phoneNumber,String birthday, String address, String email, String major, int year) {
+	PhoneUnivInfor(String name, String phoneNumber,String birthday, String address, String email, String major, String year) {
 		super(name, phoneNumber,birthday);
 		this.address = address;
 		this.email = email;

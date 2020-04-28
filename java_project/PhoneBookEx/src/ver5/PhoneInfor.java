@@ -16,10 +16,10 @@ public abstract class PhoneInfor implements Info{
 	private String name; // 이름 저장
 	private String phoneNumber; // 전화번호 저장
 	private String birthday; // 생일 저장
-
+	
 	// 초기화를 위한 생성자
 	PhoneInfor(String name, String phoneNumber, String birthday) {
-		this.name = name;
+		this.name=name;
 		this.phoneNumber = phoneNumber;
 		this.birthday = birthday;
 	}
@@ -31,6 +31,8 @@ public abstract class PhoneInfor implements Info{
 		// this(name, phoneNumber, "");
 		this(name, phoneNumber, "입력값이 없습니다");
 	}
+	
+
 
 //	void showData() {
 //		System.out.println("이름 : " + this.name);
@@ -46,6 +48,13 @@ public abstract class PhoneInfor implements Info{
 //
 //	}
 	
+	
+
+	String getName() {
+		return name;
+	}
+
+
 
 	void showBasicInfo() {
 		System.out.println("이름 :" + this.name);
@@ -54,6 +63,8 @@ public abstract class PhoneInfor implements Info{
 		
 	}
 
+	
+	//용욱이형 화이팅!
 	
 	
 	//name 속성값과 전달받은 문자열을 비교해서 반환

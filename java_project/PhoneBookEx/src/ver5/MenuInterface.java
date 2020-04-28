@@ -10,5 +10,7 @@ public interface MenuInterface {
 	int DELETE = 3;
 	int ALL_DATA = 4;
 	int EXIT = 5;
+	int Univ = 1;
+	int Company = 2;
 
 }
