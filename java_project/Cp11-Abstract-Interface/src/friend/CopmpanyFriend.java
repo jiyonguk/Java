@@ -8,7 +8,7 @@ public class CopmpanyFriend extends Friend {
 	}
 
 	@Override
-	void showData() {
+	public void showData() {
 				
 	}
 
