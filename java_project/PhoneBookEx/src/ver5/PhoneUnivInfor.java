@@ -8,14 +8,16 @@ public class PhoneUnivInfor extends PhoneInfor {
 	String major;
 	String year;
 
-	PhoneUnivInfor(String name, String phoneNumber,String birthday, String address, String email, String major, String year) {
-		super(name, phoneNumber,birthday);
+	PhoneUnivInfor(String name, String phoneNumber, String birthday, String address, String email, String major,
+			String year) {
+		super(name, phoneNumber, birthday);
 		this.address = address;
 		this.email = email;
 		this.major = major;
 		this.year = year;
 	}
-	//오버라이딩
+
+	// 오버라이딩
 	public void showAllInfo() {
 		showBasicInfo();
 		System.out.println("주소 : " + address);
@@ -24,7 +26,5 @@ public class PhoneUnivInfor extends PhoneInfor {
 		System.out.println("학년 : " + year);
 
 	}
-
-	
 
 }

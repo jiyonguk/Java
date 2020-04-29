@@ -2,34 +2,48 @@ package ver5;
 
 import java.util.InputMismatchException;
 
+
+
 public class PhoneBookMain {
 
-	
 	//
 	public static void main(String[] args) {
-		PhoneBookManager manager = PhoneBookManager.getInstance();		//불필요한 변수 생성과정 분리
-		
+		PhoneBookManager manager = PhoneBookManager.getInstance(); // 불필요한 변수 생성과정 분리
+
 		while (true) {
-			
+
 			Menu.showMenu();
-			
-			int selectNum=0;
-			
+
+			int selectNum = 0;
+
 			try {
-			selectNum = manager.sc.nextInt();
-			manager.sc.nextLine();
-			
-			}catch(InputMismatchException e) {
+				selectNum = manager.sc.nextInt();
+
+				// 정상범위 1~6
+				// INSERT ~ EXIT
+				if (!(selectNum >= MenuInterface.ADD && MenuInterface.EXIT >= selectNum)) {
+
+					BadNumberException e = new BadNumberException("메뉴 범위를 벗어나는 번호입니다\n다시확인후 입력해주세요");
+					// 강제적인 예외 발생
+					throw e;
+				}
+
+			} catch (InputMismatchException e) {
 				System.out.println("정상적인 메뉴번호의 입력이 되지 않았습니다.");
 				System.out.println("메뉴를 다시 입력해주세요");
-				manager.sc.nextLine();
 				continue;
+			} catch (BadNumberException e) {
+				System.out.println("메뉴 범위를 벗어나는 번호입니다\n다시확인후 입력해주세요");
+				continue;
+			} catch(Exception e){
+				System.out.println("메뉴를 다시 입력해주세요");
+				continue;
+			}finally {
+				manager.sc.nextLine();
 			}
-			
-			switch(selectNum) {
+
+			switch (selectNum) {
 			case MenuInterface.ADD:
-				//PhoneInfor info = manager.createInstance();
-				//manager.addInfo(info);
 				manager.addInfo();
 				break;
 			case MenuInterface.SEARCH:
@@ -42,37 +56,15 @@ public class PhoneBookMain {
 				manager.showAllData();
 				break;
 			case MenuInterface.EXIT:
-				//return;
+				// return;
 				System.out.println("프로그램이 종료되었습니다");
 				System.exit(0);
-				
+
 				break;
-			
+			case MenuInterface.EDIT:
+				manager.editInfo();
 			}
-			
-			
-//			//사용자의 입력 데이터를 인스턴스 생성
-//			info = manager.creatInstance();
-//			//정보를 배열에 저장
-//			manager.addInfo(info);
-//			//전체 리스트 출력
-//			manager.showAllData();
-//			//이름으로 검색
-//			manager.searchInfo();
-//			//이름으로 검색후 삭제
-//			manager.deleteInfo();
-//			//삭제확인
-//			manager.showAllData();
-//			
-//			System.out.println("----------------");
-//			
-//			//사용자의 입력 데이터를 인스턴스 생성
-//			for(int i=0;i<manager.cnt;i++) {
-//				
-//				manager.pBooks[i].showData();
-//				System.out.println("----------------");
-//				
-//			}
+
 		}
 
 	}

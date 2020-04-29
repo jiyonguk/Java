@@ -67,23 +67,40 @@ public class PhoneBookManager {
 
 	// 사용자의 입력데이터로 PhoneInfor 객체를 생성
 	PhoneInfor createInstance() {
-
 		PhoneInfor info = null;
 
+		int num = 0;
 		while (true) {
 			System.out.println("1.대학친구");
 			System.out.println("2.회사친구");
-			int num = 0;
+
 			try {
 				num = sc.nextInt();
-				sc.nextLine();
+				// 정상범위 1~3
+				if (!(num >= 1 && num <= 2)) {
+					BadNumberException e = new BadNumberException("범위를 벗어난 입력입니다");
+					// 강제적인 예외발생
+					throw e;
+				}
 			} catch (InputMismatchException e) {
 				System.out.println("정상적인 메뉴번호의 입력이 되지 않았습니다.");
 				System.out.println("메뉴를 다시 입력해주세요");
-				manager.sc.nextLine();
 				continue;
 
+			} catch (BadNumberException e) {
+				System.out.println("정상적인 메뉴번호의 입력이 되지 않았습니다.");
+				System.out.println("메뉴를 다시 입력해주세요");
+				continue;
+			} catch (Exception e) {
+				System.out.println("메뉴를 다시 입력해주세요");
+				continue;
+			} finally {
+				sc.nextLine();
 			}
+			break;
+		}
+
+		while (true) {
 
 			System.out.println("친구의 정보를 저장하기 위한 데이터를 입력합니다.");
 
@@ -96,35 +113,51 @@ public class PhoneBookManager {
 			System.out.println("생일을 입력해주세요. >>");
 			String birthday = sc.nextLine();
 
+			System.out.println("주소를 입력해주세요");
+			String address = sc.nextLine();
+
+			System.out.println("이메일을 입력해주세요");
+			String email = sc.nextLine();
+
+			try {
+				if (name.trim().isEmpty() || phoneNumber.trim().isEmpty()) {
+					StringEmptyException e = new StringEmptyException("기본정보는 공백없이 모두 입력해주세요\n다시 입력해주세요");
+					throw e;
+				}
+			} catch (StringEmptyException e) {
+				System.out.println("기본정보는 공백없이 모두 입력해주세요");
+				System.out.println("다시 입력해주세요\n");
+				continue;
+			}catch(Exception e){
+				System.out.println("메뉴를 다시 입력해주세요");
+				continue;
+			}
 			// 사용자의 입력 데이터에 따라 인스턴스 생성 방법 구분
 			// trim : 문자열의 양쪽 공백을 제거
 			// isEmpty : 비어있음
 
-			if (num == MenuInterface.Univ) {
-
-				System.out.println("주소를 입력해주세요");
-				String address = sc.nextLine();
-				System.out.println("이메일을 입력해주세요");
-				String email = sc.nextLine();
+			switch (num) {
+			case MenuInterface.Univ:
 				System.out.println("전공을 입력해주세요");
 				String major = sc.nextLine();
 				System.out.println("학년 입력해주세요");
 				String year = sc.nextLine();
 				info = new PhoneUnivInfor(name, phoneNumber, birthday, address, email, major, year);
 				break;
-			} else if (num == MenuInterface.Company) {
-				System.out.println("주소를 입력해주세요");
-				String address = sc.nextLine();
-				System.out.println("이메일을 입력해주세요");
-				String email = sc.nextLine();
+
+			case MenuInterface.Company:
 				System.out.println("회사를 입력해주세요");
 				String company = sc.nextLine();
 				info = new PhoneCompanyInfor(name, phoneNumber, birthday, address, email, company);
 				break;
+
 			}
+
+			break;
 		}
 
 		return info;
+
 	}
 
 	// 전체 리스트 출력
@@ -220,21 +253,42 @@ public class PhoneBookManager {
 			System.out.println("이름의 정보가 없습니다.");
 			return;
 		} else {
-			System.out.println("핸드폰번호를 입력해주세요");
-			String phoneNumber = sc.nextLine();
-			System.out.println("생일을 입력해주세요");
-			String birthday = sc.nextLine();
-			if (pBooks[searchIndex] instanceof PhoneCompanyInfor) {
+			while (true) {
+				System.out.println("핸드폰번호를 입력해주세요");
+				String phoneNumber = sc.nextLine();
+				System.out.println("생일을 입력해주세요");
+				String birthday = sc.nextLine();
 				System.out.println("주소를 입력해주세요");
 				String address = sc.nextLine();
 				System.out.println("이메일을 입력해주세요");
 				String email = sc.nextLine();
-				System.out.println("회사를 입력해주세요");
-				String company = sc.nextLine();
-				info = new PhoneCompanyInfor(name, phoneNumber, birthday, address, email, company);
+				try {
+					if (phoneNumber.trim().isEmpty() || address.trim().isEmpty() || email.trim().isEmpty()) {
+						StringEmptyException e = new StringEmptyException("기본정보는 공백없이 모두 입력해주세요\n다시 입력해주세요");
+						throw e;
+					}
+				} catch (StringEmptyException e) {
+					System.out.println("기본정보는 공백없이 모두 입력해주세요");
+					System.out.println("다시 입력해주세요\n");
+					continue;
+				}
+
+				if (pBooks[searchIndex] instanceof PhoneCompanyInfor) {
+					System.out.println("회사를 입력해주세요");
+					String company = sc.nextLine();
+					info = new PhoneCompanyInfor(name, phoneNumber, birthday, address, email, company);
+				} else if (pBooks[searchIndex] instanceof PhoneUnivInfor) {
+					System.out.println("전공을 입력해주세요");
+					String major = sc.nextLine();
+					System.out.println("학년 입력해주세요");
+					String year = sc.nextLine();
+					info = new PhoneUnivInfor(name, phoneNumber, birthday, address, email, major, year);
+				}
+
+				pBooks[searchIndex] = info;
+				System.out.println("수정완료.");
+				break;
 			}
-
 		}
-
 	}
 }

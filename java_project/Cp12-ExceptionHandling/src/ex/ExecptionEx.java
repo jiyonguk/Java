@@ -11,26 +11,21 @@ public class ExecptionEx {
 //		System.out.println("나이를 입력해주세요");
 //		int age = sc.nextInt();
 
-		 try {
-
-		int age = readAge();
-		System.out.println("나이는 " + age + "세 입니다");
-	}catch(
-
-	AgeInputException e)
-	{
-		System.out.println(e.getMessage());
+		try {
+			int age = readAge();
+			System.out.println("나이는 " + age + "세 입니다");
+		} catch (AgeInputException e) {
+			System.out.println("");
+		} catch (Exception e) {
+			System.out.println("에러 메세지 : " + e.getMessage());
+			e.printStackTrace();
+		}
+		System.out.println("프로그램이 정상 종료되었음.");
 	}
 
-	catch(
-	Exception e)
-	{
-		System.out.println("에러 메세지 : " + e.getMessage());
-		e.printStackTrace();
-	}System.out.println("프로그램이 정상 종료되었음.");
-	}
-
-	static int readAge() throws AgeInputException {
+	
+	
+	static int readAge() throws Exception {
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("나이를 입력해주세요");
