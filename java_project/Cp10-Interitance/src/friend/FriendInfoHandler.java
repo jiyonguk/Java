@@ -1,5 +1,6 @@
 package friend;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FriendInfoHandler {
@@ -14,6 +15,9 @@ public class FriendInfoHandler {
 	//공동으로 사용할 인스턴스 생성 : static private
 	//참조변수 반환 메서드 : static public
 	
+	//2020 05 01
+	//배열의 저장 -> List이용
+	
 	private static FriendInfoHandler handler = new FriendInfoHandler(100);
 	
 	public static FriendInfoHandler getInstance() {
@@ -24,15 +28,21 @@ public class FriendInfoHandler {
 	// 친구정보의 기본 정보 출력
 	// 친구정보 상세 정보 출력 기능
 
-	private Friend[] myFriends; // 친구정보 저장배열 선언
-	private int numOfFriend; // 저장된 친구의 정보갯수
+	//private Friend[] myFriends; // 친구정보 저장배열 선언
+	
+	//List 참조변수
+	private ArrayList<Friend> myFriends;
+	//private int numOfFriend; // 저장된 친구의 정보갯수
 	Scanner sc;
 
 	// 초기화 : 저장공간(사이즈) 크기를 받아서 배열 생성
 	private FriendInfoHandler(int num) {
-		this.myFriends = new Friend[num];
-		this.numOfFriend = 0;
+		//this.myFriends = new Friend[num];
+		//this.numOfFriend = 0;
 		sc = new Scanner(System.in);
+		//ArrayList 인스턴스 생성
+		myFriends = new ArrayList<Friend>();
+		
 	}
 
 	// 친구의 정보를 저장하는 기능
@@ -41,9 +51,9 @@ public class FriendInfoHandler {
 
 	// 1
 	void addFriendInfo(Friend f) {
-		myFriends[numOfFriend] = f;
-		numOfFriend++;
-
+		//myFriends[numOfFriend] = f;
+		//numOfFriend++;
+		myFriends.add(f);
 	}
 
 	// HighFriend / UnivFriend
@@ -88,8 +98,8 @@ public class FriendInfoHandler {
 	//친구정보의 기본 정보 출력 기능
 	void showAllSimpleData() {
 		System.out.println("친구의 기본 정보를 출력합니다.");
-		for(int i=0;i<numOfFriend;i++) {
-			myFriends[i].showBasicInfo();
+		for(int i=0;i<myFriends.size();i++) {
+			myFriends.get(i).showBasicInfo();
 			System.out.println("-------------------------");
 		}
 		
@@ -97,8 +107,8 @@ public class FriendInfoHandler {
 	
 	void showAllData() {
 		System.out.println("친구의 모든 정보를 출력합니다.");
-		for(int i=0;i<numOfFriend;i++) {
-			myFriends[i].showData();
+		for(int i=0;i<myFriends.size();i++) {
+			myFriends.get(i).showData();
 			System.out.println("-------------------------");
 		}
 	}

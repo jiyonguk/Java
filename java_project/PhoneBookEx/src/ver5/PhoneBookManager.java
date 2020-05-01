@@ -1,5 +1,6 @@
 package ver5;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -24,23 +25,25 @@ public class PhoneBookManager {
 		return manager;
 	}
 
-	final PhoneInfor[] pBooks;
+	final ArrayList<PhoneInfor> pBooks;
 
 	// 입력된 친구의 정보 개수 -> 입력된 배열의 요소 개수
 	// 1. 참조할 때 반복의 횟수
 	// 2. 새로운 객체를 저장할 때 index로 사용 -> 저장 할 배열위치와 같음
-	int cnt;
+//	int cnt;
 
 	Scanner sc;
 
 	private PhoneBookManager() {
 
 		// 배열 초기화
-		pBooks = new PhoneInfor[100];
+//		pBooks = new PhoneInfor[100];
 		// 저장개수 초기화
-		cnt = 0;
+//		cnt = 0;
 		// Scanner 객체 초기화
 		sc = new Scanner(System.in);
+		
+		pBooks = new ArrayList<>();
 	}
 
 	// 저장 : 이름, 전화번호, 생년월일 정보를 대상으로 하는 저장
@@ -58,10 +61,10 @@ public class PhoneBookManager {
 	void addInfo() {
 
 		// 배열에 요소 대입
-		pBooks[cnt] = createInstance();
-
+//		pBooks[cnt] = createInstance();
+		pBooks.add(createInstance());
 		// 등록된 정보의 개수를 증가
-		cnt++;
+//		cnt++;
 
 	}
 
@@ -164,8 +167,8 @@ public class PhoneBookManager {
 	void showAllData() {
 
 		// 전체 데이터 -> 입력된 데이터의 갯수 cnt
-		for (int i = 0; i < cnt; i++) {
-			pBooks[i].showAllInfo();
+		for (int i = 0; i < pBooks.size(); i++) {
+			pBooks.get(i).showAllInfo();
 			System.out.println("---------------");
 		}
 
@@ -175,8 +178,8 @@ public class PhoneBookManager {
 	int searchIndex(String name) {
 		int searchIndex = -1;
 		// 사용자가 입력한 이름으로 배열에 요소를 검색 -> index
-		for (int i = 0; i < cnt; i++) {
-			if (pBooks[i].checkName(name)) {
+		for (int i = 0; i < pBooks.size(); i++) {
+			if (pBooks.get(i).checkName(name)) {
 				searchIndex = i;
 				break;
 			}
@@ -204,7 +207,7 @@ public class PhoneBookManager {
 		if (searchIndex < 0) {
 			System.out.println("찾으시는 이름의 정보가 존재하지 않습니다.");
 		} else {
-			pBooks[searchIndex].showAllInfo();
+			pBooks.get(searchIndex).showAllInfo();
 		}
 
 	}
@@ -232,11 +235,12 @@ public class PhoneBookManager {
 			System.out.println("찾으시는 이름의 정보가 존재하지 않습니다.");
 		} else {
 			// 삭제 : 검색한 index부터 저장된 위치까지 왼쪽으로 시프트
-			for (int i = searchIndex; i < cnt - 1; i++) {
-				pBooks[i] = pBooks[i + 1];
-			}
+//			for (int i = searchIndex; i < cnt - 1; i++) {
+//				pBooks[i] = pBooks[i + 1];
+			pBooks.remove(searchIndex);
+//			}
 			// 저장된 정보의 개수를 -1
-			cnt--;
+//			cnt--;
 			System.out.println("요청하신 이름의 정보를 삭제했습니다");
 		}
 
@@ -273,11 +277,11 @@ public class PhoneBookManager {
 					continue;
 				}
 
-				if (pBooks[searchIndex] instanceof PhoneCompanyInfor) {
+				if (pBooks.get(searchIndex) instanceof PhoneCompanyInfor) {
 					System.out.println("회사를 입력해주세요");
 					String company = sc.nextLine();
 					info = new PhoneCompanyInfor(name, phoneNumber, birthday, address, email, company);
-				} else if (pBooks[searchIndex] instanceof PhoneUnivInfor) {
+				} else if (pBooks.get(searchIndex) instanceof PhoneUnivInfor) {
 					System.out.println("전공을 입력해주세요");
 					String major = sc.nextLine();
 					System.out.println("학년 입력해주세요");
@@ -285,7 +289,8 @@ public class PhoneBookManager {
 					info = new PhoneUnivInfor(name, phoneNumber, birthday, address, email, major, year);
 				}
 
-				pBooks[searchIndex] = info;
+				pBooks.remove(searchIndex);
+				pBooks.add(searchIndex, info);
 				System.out.println("수정완료.");
 				break;
 			}
