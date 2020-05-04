@@ -8,8 +8,10 @@ public interface MenuInterface {
 	int DELETE = 3;
 	int ALL_DATA = 5;
 	int EXIT = 6;
-	int Univ = 1;
-	int Company = 2;
+	int Nomal = 1;
+	int Univ = 2;
+	int Company = 3;
+	int Cafe = 4;
 	int EDIT = 4;
 
 }
