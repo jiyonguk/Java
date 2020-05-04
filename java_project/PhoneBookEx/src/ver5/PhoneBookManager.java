@@ -4,19 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/*Project : ver 0.30
 
-배열을 이용해서 프로그램 사용자가 입력하는 정보가 최대 100개까지 유지되도록 프로그램을 변경. 
-
-아래기능 삽입
-
-저장 : 이름, 전화번호, 생년월일 정보를 대상으로 하는 저장
-검색 : 이름을 기준으로 데이터를 찾아서 해당 데이터의 정보를 출력
-삭제 : 이름을 기준으로 데이터를 찾아서 해당 데이터를 삭제
-
-데이터 삭제 후 남아있는 데이터 처리는 데이터를 빈 공란이 없이 순차적으로
-재정리 2번이 삭제되었다면 3번 이후 데이터들의 주소 값이 -1 처리되어 재저장.
-*/
 public class PhoneBookManager {
 
 	private static PhoneBookManager manager = new PhoneBookManager();
@@ -27,60 +15,39 @@ public class PhoneBookManager {
 
 	final ArrayList<PhoneInfor> pBooks;
 
-	// 입력된 친구의 정보 개수 -> 입력된 배열의 요소 개수
-	// 1. 참조할 때 반복의 횟수
-	// 2. 새로운 객체를 저장할 때 index로 사용 -> 저장 할 배열위치와 같음
-//	int cnt;
 
 	Scanner sc;
 
 	private PhoneBookManager() {
 
-		// 배열 초기화
-//		pBooks = new PhoneInfor[100];
-		// 저장개수 초기화
-//		cnt = 0;
-		// Scanner 객체 초기화
+
 		sc = new Scanner(System.in);
-		
+
 		pBooks = new ArrayList<>();
 	}
 
-	// 저장 : 이름, 전화번호, 생년월일 정보를 대상으로 하는 저장
-	// 배열에 PhoneInfor타입의 참조값을 저장
-//	void addInfo(PhoneInfor info) {
-//
-//		// 배열에 요소 대입
-//		pBooks[cnt] = info;
-//
-//		// 등록된 정보의 개수를 증가
-//		cnt++;
-//
-//	}
+
 
 	void addInfo() {
 
-		// 배열에 요소 대입
-//		pBooks[cnt] = createInstance();
+
 		pBooks.add(createInstance());
-		// 등록된 정보의 개수를 증가
-//		cnt++;
+
 
 	}
 
-	// 사용자의 입력데이터로 PhoneInfor 객체를 생성
+
 	PhoneInfor createInstance() {
 		PhoneInfor info = null;
 
 		int num = 0;
 		while (true) {
-			System.out.println("1.대학친구");
-			System.out.println("2.회사친구");
+			System.out.println("1.일반 2.대학 3.회사 4.동호회");
 
 			try {
 				num = sc.nextInt();
 				// 정상범위 1~3
-				if (!(num >= 1 && num <= 2)) {
+				if (!(num >= 1 && num <= 4)) {
 					BadNumberException e = new BadNumberException("범위를 벗어난 입력입니다");
 					// 강제적인 예외발생
 					throw e;
@@ -113,9 +80,6 @@ public class PhoneBookManager {
 			System.out.println("전화번호를 입력해주세요. >>");
 			String phoneNumber = sc.nextLine();
 
-			System.out.println("생일을 입력해주세요. >>");
-			String birthday = sc.nextLine();
-
 			System.out.println("주소를 입력해주세요");
 			String address = sc.nextLine();
 
@@ -131,28 +95,36 @@ public class PhoneBookManager {
 				System.out.println("기본정보는 공백없이 모두 입력해주세요");
 				System.out.println("다시 입력해주세요\n");
 				continue;
-			}catch(Exception e){
+			} catch (Exception e) {
 				System.out.println("메뉴를 다시 입력해주세요");
 				continue;
 			}
-			// 사용자의 입력 데이터에 따라 인스턴스 생성 방법 구분
-			// trim : 문자열의 양쪽 공백을 제거
-			// isEmpty : 비어있음
 
 			switch (num) {
+			case MenuInterface.Nomal:
+				info = new PhoneInfor(name, phoneNumber, address, email);
+				break;
+
 			case MenuInterface.Univ:
 				System.out.println("전공을 입력해주세요");
 				String major = sc.nextLine();
 				System.out.println("학년 입력해주세요");
 				String year = sc.nextLine();
-				info = new PhoneUnivInfor(name, phoneNumber, birthday, address, email, major, year);
+				info = new PhoneUnivInfor(name, phoneNumber, address, email, major, year);
 				break;
 
 			case MenuInterface.Company:
 				System.out.println("회사를 입력해주세요");
 				String company = sc.nextLine();
-				info = new PhoneCompanyInfor(name, phoneNumber, birthday, address, email, company);
+				info = new PhoneCompanyInfor(name, phoneNumber, address, email, company);
 				break;
+
+			case MenuInterface.Cafe:
+				System.out.println("동호회 이름을 입력해주세요");
+				String cafeName = sc.nextLine();
+				System.out.println("닉네임을 입력해주세요");
+				String nickName = sc.nextLine();
+				info = new PhoneCafeInfor(name, phoneNumber, address, email, cafeName, nickName);
 
 			}
 
@@ -163,7 +135,6 @@ public class PhoneBookManager {
 
 	}
 
-	// 전체 리스트 출력
 	void showAllData() {
 
 		// 전체 데이터 -> 입력된 데이터의 갯수 cnt
@@ -174,10 +145,9 @@ public class PhoneBookManager {
 
 	}
 
-	// 배열에서 이름을 기준으로 검색후 index 값을 반환
 	int searchIndex(String name) {
 		int searchIndex = -1;
-		// 사용자가 입력한 이름으로 배열에 요소를 검색 -> index
+
 		for (int i = 0; i < pBooks.size(); i++) {
 			if (pBooks.get(i).checkName(name)) {
 				searchIndex = i;
@@ -188,22 +158,13 @@ public class PhoneBookManager {
 		return searchIndex;
 	}
 
-	// 검색 : 이름을 기준으로 데이터를 찾아서 해당 데이터의 정보를 출력
-	// 배열의 요소(PhoneInfor)의 name속성 값으로 배열의 요소를 찾는다
 	void searchInfo() {
 
 		System.out.println("검색하고자하는 이름을 입력해주세요");
 		String name = sc.nextLine();
 
 		int searchIndex = searchIndex(name);
-		// 사용자가 입력한 이름으로 배열에 요소를 검색 -> index
-//		for (int i = 0; i < cnt; i++) {
-//			if (pBooks[i].checkName(name)) {
-//				searchIndex = i;
-//				break;
-//			}
-//
-//		}
+
 		if (searchIndex < 0) {
 			System.out.println("찾으시는 이름의 정보가 존재하지 않습니다.");
 		} else {
@@ -212,35 +173,18 @@ public class PhoneBookManager {
 
 	}
 
-	// 삭제 : 이름을 기준으로 데이터를 찾아서 해당 데이터를 삭제
 	void deleteInfo() {
 		System.out.println("삭제하고자하는 이름을 입력해주세요");
 		String name = sc.nextLine();
 
 		int searchIndex = searchIndex(name);
-		// 사용자가 입력한 이름으로 배열에 요소를 검색 -> index
-//		for (int i = 0; i < cnt; i++) {
-//			if (pBooks[i].checkName(name)) {
-//				searchIndex = i;
-//				break;
-//			}
-//
-//		}
-		// 삭제
-		// pBooks[2] : 삭제, pBooks[2] = null
-		// 데이터 삭제 후 남아있는 데이터 처리는 데이터를 빈 공란이 없이 순차적으로
-		// 재정리 2번이 삭제되었다면 3번 이후 데이터들의 주소 값이 -1 처리되어 재저장.
-		// pBooks[a] : 삭제, pBooks[a] = pBooks[a+1]
+
 		if (searchIndex < 0) {
 			System.out.println("찾으시는 이름의 정보가 존재하지 않습니다.");
 		} else {
-			// 삭제 : 검색한 index부터 저장된 위치까지 왼쪽으로 시프트
-//			for (int i = searchIndex; i < cnt - 1; i++) {
-//				pBooks[i] = pBooks[i + 1];
+
 			pBooks.remove(searchIndex);
-//			}
-			// 저장된 정보의 개수를 -1
-//			cnt--;
+
 			System.out.println("요청하신 이름의 정보를 삭제했습니다");
 		}
 
@@ -260,8 +204,6 @@ public class PhoneBookManager {
 			while (true) {
 				System.out.println("핸드폰번호를 입력해주세요");
 				String phoneNumber = sc.nextLine();
-				System.out.println("생일을 입력해주세요");
-				String birthday = sc.nextLine();
 				System.out.println("주소를 입력해주세요");
 				String address = sc.nextLine();
 				System.out.println("이메일을 입력해주세요");
@@ -280,13 +222,21 @@ public class PhoneBookManager {
 				if (pBooks.get(searchIndex) instanceof PhoneCompanyInfor) {
 					System.out.println("회사를 입력해주세요");
 					String company = sc.nextLine();
-					info = new PhoneCompanyInfor(name, phoneNumber, birthday, address, email, company);
+					info = new PhoneCompanyInfor(name, phoneNumber, address, email, company);
 				} else if (pBooks.get(searchIndex) instanceof PhoneUnivInfor) {
 					System.out.println("전공을 입력해주세요");
 					String major = sc.nextLine();
 					System.out.println("학년 입력해주세요");
 					String year = sc.nextLine();
-					info = new PhoneUnivInfor(name, phoneNumber, birthday, address, email, major, year);
+					info = new PhoneUnivInfor(name, phoneNumber, address, email, major, year);
+				} else if (pBooks.get(searchIndex) instanceof PhoneCafeInfor) {
+					System.out.println("카페이름을 입력해주세요");
+					String cafeName = sc.nextLine();
+					System.out.println("닉네임을 입력해주세요");
+					String nickName = sc.nextLine();
+					info = new PhoneCafeInfor(name, phoneNumber, address, email, cafeName, nickName);
+				}else {
+					info = new PhoneInfor(name, phoneNumber, address, email);
 				}
 
 				pBooks.remove(searchIndex);

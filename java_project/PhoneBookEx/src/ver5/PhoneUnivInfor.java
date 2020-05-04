@@ -3,25 +3,19 @@ package ver5;
 public class PhoneUnivInfor extends PhoneInfor {
 
 	// 추가되는 정보
-	String address;
-	String email;
+
 	String major;
 	String year;
 
-	PhoneUnivInfor(String name, String phoneNumber, String birthday, String address, String email, String major,
-			String year) {
-		super(name, phoneNumber, birthday);
-		this.address = address;
-		this.email = email;
+	PhoneUnivInfor(String name, String phoneNumber, String address, String email, String major, String year) {
+		super(name, phoneNumber, address, email);
 		this.major = major;
 		this.year = year;
 	}
 
 	// 오버라이딩
 	public void showAllInfo() {
-		showBasicInfo();
-		System.out.println("주소 : " + address);
-		System.out.println("이메일 : " + email);
+		super.showAllInfo();
 		System.out.println("전공 : " + major);
 		System.out.println("학년 : " + year);
 
