@@ -1,6 +1,6 @@
-package ex;
+package TeamGameProject;
 
-public interface DGIF {
+public interface DungeonIf {
 	int EASY = 1;
 	int NOMAL = 2;
 	int HARD = 3;
