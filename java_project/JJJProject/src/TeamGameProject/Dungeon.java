@@ -237,10 +237,12 @@ public class Dungeon {
 		sc.nextLine();
 		return num;
 	}
-	boolean stageCheck() {
+	boolean stageCheck(int num) {
 		
 		boolean result = false;
-		
+		if() {
+			
+		}
 		return result;
 	}
 
