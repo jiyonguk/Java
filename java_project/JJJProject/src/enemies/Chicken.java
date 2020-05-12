@@ -1,4 +1,3 @@
-
 package enemies;
 
 //1-2
@@ -12,15 +11,15 @@ public class Chicken extends Monster {// should be resistant to physical attacks
 
 		setStage(2);
 		setName("닭");
-		setBaseHealth(getStage());
-		setBaseStrength(EnemyBasics.BASE_STRENGTH);
+		setBaseHealth(getStage()+2);
+		setBaseStrength();
 //      setExpWorth(EnemyBasics.BASE_EXP_WORTH);
 		setExpWorth(getStage());// 메서드 인자 stage로 바꿈
 
 		setGoldWorth(getExpWorth());
-		setWeakness(1); // See Monster class for list of types
+		setWeakness(4); // See Monster class for list of types
 
-		setEvasion();// 이건 그냥 랜덤 확률
+		setEvasion(0);// 이건 그냥 랜덤 확률
 		initCurrentStats();
 	}
 //  public void showData() {
