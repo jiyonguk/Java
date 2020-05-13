@@ -60,5 +60,12 @@ public class SkillInven {
 		}
 
 	}
+	public void resetSkillChance() {
+
+		for (int i = 0; i < skill.size(); i++) {
+			skill.set(i, new Skill(skill.get(i).skillName, 3, skill.get(i).multiple, skill.get(i).gold));
+		}
+		System.out.println("스킬 카운트가 초기화 되었습니다.");
+	}
 
 }

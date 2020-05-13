@@ -18,7 +18,7 @@ public class Dungeon {
 	Events e;
 
 	boolean result;
-	
+
 	boolean runCount;
 
 	public Dungeon() {
@@ -40,89 +40,25 @@ public class Dungeon {
 		switch (num) {
 		case DungeonIf.EASY:
 			result = stageEasy(p);
-			
+			p.skillInven.resetSkillChance();
 
 			break;
 		case DungeonIf.NOMAL:
 			result = stageNomal(p);
+			p.skillInven.resetSkillChance();
 
 			break;
 		case DungeonIf.HARD:
 			result = stageHard(p);
+			p.skillInven.resetSkillChance();
 
 			break;
-		case 4:
+		case DungeonIf.BACK:
 			result = true;
 			break;
 		}
 
 		return result;
-	}
-
-	boolean bossStage(Player p, int num) {
-
-		boolean win = false;
-
-		if (playBoss()) {
-			switch (num) {
-			case 1:
-				m = makeMonsters(num + 3);
-				break;
-			case 2:
-				m = makeMonsters(num + 6);
-				break;
-			case 3:
-				m = makeMonsters(num + 9);
-				break;
-			}
-
-			int result = b.choicePlayerMovement(m, p);
-
-			if (result == 0) {// result==1(몬스터 체력0이하일때=몬스터 죽었을 때)로 변경
-				switch (num) {
-				case 1:
-					System.out.println("	-----------------------------------------");
-					System.out.println("	|	     초급 던전 보스를 처치 하셨습니다.	|");
-					System.out.println("	|	상위 난이도 던전 입장 권한이 생겼습니다.	|");
-					System.out.println("	|	       추가 보상을 획득합니다.		|");
-					System.out.println("	-----------------------------------------");
-					p.setStage2Count(1);
-					e.rewordsOfVictory(p, m);
-					win = true;
-					break;
-				case 2:
-					System.out.println("	-----------------------------------------");
-					System.out.println("	|	     중급 던전 보스를 처치 하셨습니다.	|");
-					System.out.println("	|	상위 난이도 던전 입장 권한이 생겼습니다.	|");
-					System.out.println("	|	       추가 보상을 획득합니다.		|");
-					System.out.println("	-----------------------------------------");
-					p.setStage3Count(1);
-					e.rewordsOfVictory(p, m);
-					win = true;
-					break;
-				case 3:
-					System.out.println("	------------------------");
-					System.out.println("	축하합니다!");
-					System.out.println("	마지막 보스를 클리어 하셨습니다!");
-					System.out.println("	------------------------");
-					e.rewordsOfVictory(p, m);
-					win = true;
-					break;
-				}
-			} else if (result == 1) {
-				win = e.takeDie(p);
-			} else if (result == 2) {
-
-				win = true;
-			} else {
-				System.out.println("	------------------------");
-				System.out.println("	|	패배하셨습니다.	|");
-				System.out.println("	------------------------");
-				win = false;
-			}
-		}
-
-		return win;
 	}
 
 	// 초급스테이지
@@ -318,28 +254,105 @@ public class Dungeon {
 		return result;
 	}
 
+	void bossStage(Player p, int num) {
+
+		if (playBoss()) {
+			switch (num) {
+			case 1:
+				m = makeMonsters(num + 3);
+				break;
+			case 2:
+				m = makeMonsters(num + 6);
+				break;
+			case 3:
+				m = makeMonsters(num + 9);
+				break;
+			}
+
+			int result = b.choicePlayerMovement(m, p);
+
+			if (result == 0) {
+				switch (num) {
+				case 1:
+					System.out.println("	-----------------------------------------");
+					System.out.println("	|	     초급 던전 보스를 처치 하셨습니다.	|");
+					System.out.println("	|	상위 난이도 던전 입장 권한이 생겼습니다.	|");
+					System.out.println("	|	       추가 보상을 획득합니다.		|");
+					System.out.println("	-----------------------------------------");
+					p.setStage2Count(1);
+					e.rewordsOfVictory(p, m);
+
+					break;
+				case 2:
+					System.out.println("	-----------------------------------------");
+					System.out.println("	|	     중급 던전 보스를 처치 하셨습니다.	|");
+					System.out.println("	|	상위 난이도 던전 입장 권한이 생겼습니다.	|");
+					System.out.println("	|	       추가 보상을 획득합니다.		|");
+					System.out.println("	-----------------------------------------");
+					p.setStage3Count(1);
+					e.rewordsOfVictory(p, m);
+
+					break;
+				case 3:
+					System.out.println("	------------------------");
+					System.out.println("	축하합니다!");
+					System.out.println("	마지막 보스를 클리어 하셨습니다!");
+					System.out.println("	------------------------");
+					e.rewordsOfVictory(p, m);
+
+					break;
+				}
+			} else if (result == 1) {
+				e.takeDie(p);
+			} else if (result == 2) {
+
+				System.out.println("도망");
+			} else {
+				System.out.println("	------------------------");
+				System.out.println("	|	패배하셨습니다.	|");
+				System.out.println("	------------------------");
+
+			}
+		}
+
+	}
+
 	// 스테이지 선택
 	int stageChoice() {
+		while (true) {
+			System.out.println("	=================================");
+			System.out.println("	|	   던전을 선택해주세요		|");
+			System.out.println("	|				|");
+			System.out.println("	|   1. 초급 던전 (적정 레벨 1 ~ 9)	|");
+			System.out.println("	|  2. 중급 던전 (적정 레벨  8 ~ 15)	|");
+			System.out.println("	|  3. 상급 던전 (적정 레벨 14 ~ 30)	|");
+			System.out.println("	=================================");
+			int num = 0;
+			try {
+				num = sc.nextInt();
+				if (!(num > 0 && num < 4)) {
+					BadNumberException e = new BadNumberException();
+					throw e;
+				}
+			} catch (BadNumberException e) {
+				System.out.println("숫자 입력이 잘못 되었습니다.");
+				continue;
+			} catch (Exception e) {
+				System.out.println("숫자 입력이 잘못 되었습니다.");
+			} finally {
 
-		System.out.println("	=================================");
-		System.out.println("	|	   던전을 선택해주세요		|");
-		System.out.println("	|				|");
-		System.out.println("	|   1. 초급 던전 (적정 레벨 1 ~ 9)	|");
-		System.out.println("	|  2. 중급 던전 (적정 레벨  8 ~ 15)	|");
-		System.out.println("	|  3. 상급 던전 (적정 레벨 14 ~ 30)	|");
-		System.out.println("	=================================");
+				sc.nextLine();
+			}
 
-		int num = sc.nextInt();
-		sc.nextLine();
-
-		if (num == 2 && stage2Check()) {
-			num = 4;
-			return num;
-		} else if (num == 3 && stage3Check()) {
-			num = 4;
+			if (num == 2 && stage2Check()) {
+				num = 4;
+				return num;
+			} else if (num == 3 && stage3Check()) {
+				num = 4;
+				return num;
+			}
 			return num;
 		}
-		return num;
 
 	}
 
