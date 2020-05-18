@@ -63,6 +63,26 @@ from emp
 
 -- null 값 치환 함수 : nvl(컬럼명, 기본값)
 -- 기본값은 컬럼의 도메인의 자료형과 같아야함
-select ename, sal, job, nvl(comm,0), sal*12, sal*12+nvl(comm,0)
+select ename, sal, job, nvl(comm,0), sal*12 as sal, sal*12+nvl(comm,0) as total
 from emp
 ;
+
+-- 데이터베이스의 문자열 표현 -> 작은 따옴표를 이용
+-- '문자열'
+-- 문자열을 붙여서 출력하는 연산 -> ||
+
+select ename ||' is a '||job as msg
+from emp;
+
+select ename, job
+from emp;
+
+select deptno
+from emp;
+
+-- 출력 컬럼의 중복을 제거하고 하나씩만 출력 : distinct
+
+select distinct deptno, job
+from emp;
+
+
