@@ -4,16 +4,16 @@ select * from emp;
 
 select * from dept;
 
---·Î±×ÀÎÇÑ °èÁ¤ÀÌ ¼ÒÀ¯ÇÑ Å×ÀÌºí È®ÀÎ
+--ë¡œê·¸ì¸í•œ ê³„ì •ì´ ì†Œìœ í•œ í…Œì´ë¸” í™•ì¸
 
 select * from tab;
 
--- emp : »ç¿øÁ¤º¸
--- dept : ºÎ¼­Á¤º¸
--- bouns : ÀÓ½ÃÅ×ÀÌºí
--- salgrade : ±Ş¿©Å×ÀÌºí
+-- emp : ì‚¬ì›ì •ë³´
+-- dept : ë¶€ì„œì •ë³´
+-- bouns : ì„ì‹œí…Œì´ë¸”
+-- salgrade : ê¸‰ì—¬í…Œì´ë¸”
 
---Å×ÀÌºíÀÇ ±¸Á¶ È®ÀÎ : desc Å×ÀÌºíÀÌ¸§
+--í…Œì´ë¸”ì˜ êµ¬ì¡° í™•ì¸ : desc í…Œì´ë¸”ì´ë¦„.
 desc emp;
 
 desc dept;
@@ -23,18 +23,18 @@ desc salgrade;
 select * from emp;
 select * from dept;
 
--- µ¥ÀÌÅÍ °Ë»ö ÁúÀÇ
+-- ë°ì´í„° ê²€ìƒ‰ ì§ˆì˜
 
-select ename, sal, deptno, empno--ÄÃ·³ ÀÌ¸§
-from emp -- Å×ÀÌºí ÀÌ¸§
+select ename, sal, deptno, empno--ì»¬ëŸ¼ ì´ë¦„
+from emp -- í…Œì´ë¸” ì´ë¦„
 ;
 
 select deptno, dname from dept;
 
 
 
--- selectÀÇ °á°ú´Â »õ·Î¿î Å×ÀÌºíÀÌ´Ù.
--- ÄÃ·³ÀÇ »ê¼ú ¿¬»êÀÌ °¡´ÉÇÏ´Ù. +, -, *, /, mod ÇÔ¼öÀÌ¿ë
+-- selectì˜ ê²°ê³¼ëŠ” ìƒˆë¡œìš´ í…Œì´ë¸”ì´ë‹¤.
+-- ì»¬ëŸ¼ì˜ ì‚°ìˆ  ì—°ì‚°ì´ ê°€ëŠ¥í•˜ë‹¤. +, -, *, /, mod í•¨ìˆ˜ì´ìš©
 
 select * from emp;
 select ename, sal, sal + comm
@@ -61,15 +61,15 @@ select ename, sal, job, comm, sal*12, sal*12+comm
 from emp
 ;
 
--- null °ª Ä¡È¯ ÇÔ¼ö : nvl(ÄÃ·³¸í, ±âº»°ª)
--- ±âº»°ªÀº ÄÃ·³ÀÇ µµ¸ŞÀÎÀÇ ÀÚ·áÇü°ú °°¾Æ¾ßÇÔ
+-- null ê°’ ì¹˜í™˜ í•¨ìˆ˜ : nvl(ì»¬ëŸ¼ëª…, ê¸°ë³¸ê°’)
+-- ê¸°ë³¸ê°’ì€ ì»¬ëŸ¼ì˜ ë„ë©”ì¸ì˜ ìë£Œí˜•ê³¼ ê°™ì•„ì•¼í•¨
 select ename, sal, job, nvl(comm,0), sal*12 as sal, sal*12+nvl(comm,0) as total
 from emp
 ;
 
--- µ¥ÀÌÅÍº£ÀÌ½ºÀÇ ¹®ÀÚ¿­ Ç¥Çö -> ÀÛÀº µû¿ÈÇ¥¸¦ ÀÌ¿ë
--- '¹®ÀÚ¿­'
--- ¹®ÀÚ¿­À» ºÙ¿©¼­ Ãâ·ÂÇÏ´Â ¿¬»ê -> ||
+-- ë°ì´í„°ë² ì´ìŠ¤ì˜ ë¬¸ìì—´ í‘œí˜„ -> ì‘ì€ ë”°ì˜´í‘œë¥¼ ì´ìš©
+-- 'ë¬¸ìì—´'
+-- ë¬¸ìì—´ì„ ë¶™ì—¬ì„œ ì¶œë ¥í•˜ëŠ” ì—°ì‚° -> ||
 
 select ename ||' is a '||job as msg
 from emp;
@@ -80,7 +80,7 @@ from emp;
 select deptno
 from emp;
 
--- Ãâ·Â ÄÃ·³ÀÇ Áßº¹À» Á¦°ÅÇÏ°í ÇÏ³ª¾¿¸¸ Ãâ·Â : distinct
+-- ì¶œë ¥ ì»¬ëŸ¼ì˜ ì¤‘ë³µì„ ì œê±°í•˜ê³  í•˜ë‚˜ì”©ë§Œ ì¶œë ¥ : distinct
 
 select distinct deptno, job
 from emp;
