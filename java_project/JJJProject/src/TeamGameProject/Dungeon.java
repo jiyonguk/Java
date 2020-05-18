@@ -28,37 +28,36 @@ public class Dungeon {
 		p = new Player();
 		m = new Monster();
 		sc = new Scanner(System.in);
-		runCount = false;
 
 	}
 
 	// 스테이지 선택
-	boolean stage(Player p) {
+	void stage(Player p) {
 
 		int num = stageChoice();
 
 		switch (num) {
 		case DungeonIf.EASY:
-			result = stageEasy(p);
+			stageEasy(p);
 			p.skillInven.resetSkillChance();
 
 			break;
 		case DungeonIf.NOMAL:
-			result = stageNomal(p);
+			stageNomal(p);
 			p.skillInven.resetSkillChance();
 
 			break;
 		case DungeonIf.HARD:
-			result = stageHard(p);
+			stageHard(p);
 			p.skillInven.resetSkillChance();
 
 			break;
 		case DungeonIf.BACK:
-			result = true;
+			System.out.println("마을로 돌아갑니다.");
 			break;
 		}
 
-		return result;
+
 	}
 
 	// 초급스테이지
@@ -323,14 +322,15 @@ public class Dungeon {
 			System.out.println("	=================================");
 			System.out.println("	|	   던전을 선택해주세요		|");
 			System.out.println("	|				|");
-			System.out.println("	|   1. 초급 던전 (적정 레벨 1 ~ 9)	|");
+			System.out.println("	|  1. 초급 던전 (적정 레벨 1 ~ 9)	|");
 			System.out.println("	|  2. 중급 던전 (적정 레벨  8 ~ 15)	|");
 			System.out.println("	|  3. 상급 던전 (적정 레벨 14 ~ 30)	|");
+			System.out.println("	|  4. 마을로 돌아가기                     	|");
 			System.out.println("	=================================");
 			int num = 0;
 			try {
 				num = sc.nextInt();
-				if (!(num > 0 && num < 4)) {
+				if (!(num > 0 && num < 5)) {
 					BadNumberException e = new BadNumberException();
 					throw e;
 				}

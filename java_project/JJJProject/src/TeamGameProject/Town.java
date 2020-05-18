@@ -43,11 +43,9 @@ public class Town {
 			switch (choiceMenu) {
 
 			case 1: // 던전 들어가기
-				if (d.stage(d.p)) {
-					continue;
-				}
+				d.stage(d.p);
 				break;
-
+				
 			case 2: // 현재 정보 확인
 				d.p.showStatus();
 				break;
