@@ -1,0 +1,62 @@
+
+select * from emp;
+select * from dept;
+
+select ename, dname
+from emp, dept
+where emp.deptno = dept.deptno;
+
+select e.ename, d.dname
+from emp e, dept d
+where e.deptno = d.deptno;
+
+
+select * from orders;
+select * from book;
+
+select *
+from orders o, book b, customer c
+where o.bookid = b.bookid and o.custid = c.custid
+and name = '박지성'
+order by orderid;
+
+
+select * from emp;
+select * from salgrade;
+
+select ename, sal, grade
+from emp e, salgrade s
+--where e.sal >= s.losal and e.sal<= s.hisal;
+where sal between s.losal and s.hisal
+;
+
+select e.ename|| ' 의 상사는 ' || nvl(m.ename, '관리자없음') ||' 입니다.'
+from emp e, emp m
+where e.mgr = m.empno(+);
+
+select *
+from emp cross join dept;
+
+select ename, dname
+from emp inner join dept
+on emp.deptno=dept.deptno
+where ename= 'SCOTT';
+
+select *
+from emp join dept
+using(deptno);
+
+select ename, dname
+from emp natural join dept;
+
+select *
+from emp e left outer join emp m
+on e.mgr = m.empno;
+
+select *
+from dept d left outer join dept d2
+using(deptno);
+
+
+
+

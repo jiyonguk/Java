@@ -24,7 +24,7 @@ from dual;
 
 
 --21. 사원들의 상관 사번을 출력하되 상관이 없는 사원에 대해서는 NULL 값 대신 0으로 출력하시오.
-select ename, nvl(mgr,0)
+select ename, nvl(mgr, 0)
 from emp;
 
 --22. DECODE 함수로 직급에 따라 급여를 인상하도록 하시오.
@@ -70,9 +70,6 @@ group by job
 having min(sal)>=2000
 order by min(sal) desc;
 
-
-
-
 --29. 각 부서에 대해 부서번호, 사원 수, 부서 내의 모든 사원의 평균 급여를 출력하시오.
 --평균 급여는 소수점 둘째 자리로 반올림 하시오.
 select deptno, count(*), round(avg(sal), 2)
@@ -85,9 +82,9 @@ select deptno,
 decode( deptno, 10, 'Accounting',
                 20, 'Research',
                 30, 'Sales') as deptName,
-decode(deptno, 10, '서울',
-                20, '대전',
-                30, '대구') as deptArea,
+decode(deptno, 10, 'NEW YORK',
+                20, 'DALLAS',
+                30, 'CHICAGO') as deptArea,
                 count(*),round(avg(sal)) as avgSal
 from emp
 group by deptno;
@@ -97,9 +94,9 @@ group by deptno;
 31. 업무를 표시한 다음 해당 업무에 대해 부서 번호별 급여 및 부서 10, 20, 30의 급여 총액을 각각 출력하시오.
 --별칭은 각 job, dno, 부서 10, 부서 20, 부서 30, 총액으로 지정하시오. ( hint. Decode, group by )
 select job, deptno as dno,
-decode(deptno, 10, sum(sal)) as 부서10,
-decode(deptno, 20, sum(sal)) as 부서20,
-decode(deptno, 30, sum(sal)) as 부서30,
-sum(sal) as 총액
+nvl(decode(deptno, 10, sum(sal)),0) as "부서10",
+nvl(decode(deptno, 20, sum(sal)),0) as "부서20",
+nvl(decode(deptno, 30, sum(sal)),0) as "부서30",
+sum(sal) as "총액"
 from emp
 group by job,deptno;
