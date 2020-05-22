@@ -1,0 +1,106 @@
+
+
+select dname
+from dept
+where deptno = (select deptno
+                    from emp
+                    where ename = 'SCOTT')
+;
+
+select *
+from emp
+where mgr = (select empno
+                from emp
+                where ename = 'KING')
+;
+
+select *
+from emp
+where sal > (select avg(sal)
+from emp
+);
+
+select ename, sal, deptno
+from emp
+where deptno in( select distinct deptno
+from emp
+where sal >= 3000);
+
+
+select*
+from emp
+where sal > all(select sal
+from emp
+where deptno = 30);
+
+select *
+from emp
+where empno in(select empno
+from emp
+where comm is not null);
+
+select*
+from emp
+where sal > any(select sal
+from emp
+where deptno = 30);
+
+select rownum, ename
+from emp
+where rownum < 6;
+
+select custid, (select name
+from customer c
+where c.custid = o.custid),SUM(saleprice)
+from orders o
+group by custid;
+
+select name, sum(saleprice)
+from orders join customer
+using(custid)
+group by name;
+
+select * from customer where custid <= 2;
+
+select name, sum(orders.saleprice)
+from (select * from customer where custid <= 2) join orders
+using (custid)
+group by name;
+
+select rownum, ename from emp;
+select rownum, ename, empno
+from(select ename, empno, job, deptno from emp order by ename )
+;
+
+select orderid, custid, saleprice 
+from orders o
+where saleprice > (select avg(saleprice)
+from orders a
+where a.custid = o.custid)
+;
+
+select * from customer where address like '%대한민국%';
+
+select sum(saleprice)
+from orders
+where custid in(select custid from customer where address like '%대한민국%')
+;
+
+select max(saleprice) from orders where custid = 3;
+
+select orderid, saleprice
+from orders
+where saleprice > all(select saleprice from orders where custid = 3);
+
+select * from customer where address like '%대한민국%';
+
+select sum(saleprice)"TOTAL"
+from orders o
+where exists(
+select *
+from customer c
+where address like '%대한민국%'
+and o.custid = c.custid);
+
+
+
