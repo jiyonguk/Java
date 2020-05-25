@@ -9,7 +9,6 @@ where custid = (select custid
                 where name = '박지성');
 
 --(6) 박지성이구매한도서의이름, 가격, 정가와판매가격의차이
-select custid from customer where name = '박지성';
 
 select bookname, price , price - saleprice
 from book join orders
@@ -20,15 +19,23 @@ where custid = (select custid
 
 
 --(7) 박지성이구매하지않은도서의이름
-select custid from customer where name ='박지성';
 
 select bookname
-from book join orders
-using(bookid)
-where custid != (select custid 
-                from customer
-                where name = '박지성');
-
+from book
+where bookname not in(select bookname
+                        from book join orders
+                        using(bookid)
+                        where custid = (select custid 
+                                        from customer
+                                        where name = '박지성'));
+                
+select bookname
+from book
+where bookid not in(
+    select bookid
+    from orders join customer
+    using(custid)
+    where name = '박지성');
 
 --2 마당서점의운영자와경영자가요구하는다음질문에대해SQL 문을작성하시오.
 --(8) 주문하지않은고객의이름(부속질의사용)
@@ -50,30 +57,42 @@ select name, bookname
 from (select *
         from orders  join customer 
         using(custid)) join book         
-                        using(bookid);
+using(bookid)
+order by name;
+
+select name, bookname
+from orders join customer
+using(custid)
+join book
+using(bookid);
 
 --(12) 도서의가격(Book 테이블)과판매가격(Orders 테이블)의차이가가장많은주문
 
 select *
-from (select *
-        from book  join orders
-        using(bookid)
-        order by price - saleprice desc)
-where rownum = 1;
-
-
+from book join orders
+using(bookid)
+where price - saleprice = (
+    select max (price - saleprice)
+    from book join orders
+    using(bookid))
+    ;
 
 --(13) 도서의판매액평균보다자신의구매액평균이더높은고객의이름
-select avg(saleprice)
-from orders;
 
 select name
 from (select name, avg(saleprice) avg 
-        from orders o ,customer c 
-        where o.custid = c.custid 
-        group by c.name) 
+        from orders join customer 
+        using(custid)
+        group by name) 
 where avg > (select avg(saleprice) 
             from orders)
+;
+
+select name, avg(saleprice)
+from orders join customer
+using(custid)
+group by name
+having avg(saleprice) > (select avg(saleprice) from orders)
 ;
 
 
@@ -94,5 +113,34 @@ where custid in(select distinct custid
 ;
 
 
+select name
+from orders join customer
+using(custid)
+join book
+using(bookid)
+where publisher in(select publisher
+    from orders join customer
+    using(custid)
+    join book
+    using(bookid)
+    where name = '박지성') and name !='박지성';
+;
+
+
 --(2) 두 개 이상의 서로 다른 출판사에서 도서를 구매한 고객의 이름
 
+select name 
+from (select name, bookid from orders join customer using(custid)) join book
+using(bookid)
+group by name
+having count(distinct publisher)>=2;
+
+
+
+select name
+from book join orders
+using (bookid)
+join customer
+using(custid)
+group by name
+having count(distinct publisher)>=2;
