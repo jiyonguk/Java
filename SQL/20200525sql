@@ -123,3 +123,112 @@ insert into emp04 (empno, ename, deptno, gender, sal)
         
         
 select * from emp04;
+
+drop table emp02;
+
+create table emp02(
+    empno number(4),
+    ename varchar2(10) constraint emp02_ename_nn not null,
+    job varchar2(10) not null,
+    deptno number(2),
+    constraint emp02_empno_pk primary key(empno),
+    constraint emp02_ename_uk unique(ename),
+    constraint emp02_deptno_fk foreign key(deptno)references dept(deptno));
+
+
+--전화번호 관리 프로그램
+
+--이름, 전화번호, 생일, 이메일
+--전공, 학년
+--부서이름, 직급
+--모임이름, 닉네임
+--대리키 : 일련번호 -> p_idx, memberIDX, member_idx
+
+--전화번호부 (Contact)
+
+create table contact(
+    
+    pidx number(1) constraint contact_pidx_pk primary key,
+    pbname varchar2(20) constraint contact_pbname_nn not null,
+    pbphonenumber varchar2(13) constraint contact_pbphonenumber_nn not null,
+    pbaddr varchar2(20) default 'N',
+    pbemail varchar2(20) default 'N',
+    pbtype varchar2(20) constraint contact_pbtype_ck check (pbtype in('univ','com','cafe')),
+    
+    pbmajor varchar2(20),
+    pbgrade number(10),
+    pbcompany varchar2(20),
+    pbdept varchar2(20),
+    pbjob varchar2(20),
+    pbcafe varchar2(20),
+    pbnickname varchar2(20)
+    );
+    
+drop table contact;
+desc contact;    
+
+select constraint_name from user_constraints where table_name='CONTACT';
+
+create table phoneInfo_basic(
+    idx number(6) constraint phoneInfo_basic_idx_pk primary key,
+    fr_name varchar2(20) constraint phoneInfo_basic_fr_name_nn not null,
+    fr_phonenumber varchar2(20) constraint phoneInfo_basic_fr_phonenumber_nn not null,
+    fr_email varchar2(20),
+    fr_address varchar2(20),
+    fr_regdate date default sysdate
+    );
+    
+create table phoneInfo_basic(
+    idx number(6),
+    fr_name varchar2(20) constraint phoneInfo_basic_fr_name_nn not null,
+    fr_phonenumber varchar2(20) constraint phoneInfo_basic_fr_phonenumber_nn not null,
+    fr_email varchar2(20),
+    fr_address varchar2(20),
+    fr_regdate date default sysdate,
+    constraint phoneInfo_basic_idx_pk primary key(idx)
+    );
+
+
+
+create table phoneInfo_univ(
+    idx number(6) constraint phoneInfo_univ_idx_pk primary key,
+    fr_u_major varchar2(20) default 'N',
+    fr_u_year number(1) default '1' 
+    constraint phoneInfo_univ_fr_u_year_ck check (fr_u_year > 0 and fr_u_year < 5),
+    fr_ref number(6) constraint phoneInfo_univ_fr_ref_fk references phoneInfo(idx));
+    
+create table phoneInfo_univ(
+    idx number(6),
+    fr_u_major varchar2(20) default 'N',
+    fr_u_year number(1) default '1',
+    fr_ref number(6),
+    constraint phoneInfo_univ_idx_pk primary key(idx),
+    constraint fr_u_year check (fr_u_year > 0 and fr_u_year < 5),
+    constraint phoneInfo_univ_idx_fk foreign key(fr_ref) references phoneInfo_baisc(idx)
+    );
+
+
+
+create table phoneInfo_com(
+    idx number(6) constraint phoneInfo_com_idx_pk primary key,
+    fr_c_company varchar2(20) default 'N',
+    fr_ref number(6) constraint phoneInfo_com_fr_ref_fk references phoneInfo(idx));
+    
+create table phoneInfo_com(
+    idx number(6),
+    fr_c_company varchar2(20) default 'N',
+    fr_ref number(6),
+    constraint phoneInfo_com_idx_pk primary key(idx),
+    constraint phoneInfo_com_idx_fk foreign key(fr_ref) references phoneInfo_baisc(idx));
+
+
+
+
+
+
+
+
+
+
+
+

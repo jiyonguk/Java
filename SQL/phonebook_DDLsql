@@ -1,0 +1,175 @@
+--전화번호 관리 프로그램
+
+--이름, 전화번호, 생일, 이메일
+--전공, 학년
+--부서이름, 직급
+--모임이름, 닉네임
+--대리키 : 일련번호 -> p_idx, memberIDX, member_idx
+
+--전화번호부 (Contact)
+
+create table phonebook(
+    
+    pidx number(1) constraint contact_pidx_pk primary key,
+    pbname varchar2(20) constraint contact_pbname_nn not null,
+    pbphonenumber varchar2(13) constraint contact_pbphonenumber_nn not null,
+    pbaddr varchar2(20) default 'N',
+    pbemail varchar2(20) default 'N',
+    pbtype varchar2(20) constraint contact_pbtype_ck check (pbtype in('univ','com','cafe')),
+    
+    pbmajor varchar2(20),
+    pbgrade number(10),
+    pbcompany varchar2(20),
+    pbdept varchar2(20),
+    pbjob varchar2(20),
+    pbcafe varchar2(20),
+    pbnickname varchar2(20)
+    );
+    
+drop table phonebook;
+desc phonebook;    
+
+select constraint_name from user_constraints where table_name='CONTACT';
+
+create table phoneInfo_basic(
+    idx number(6) constraint Info_basic_idx_pk primary key,
+    fr_name varchar2(20) constraint Info_basic_fr_name_nn not null,
+    fr_phonenumber varchar2(20) constraint Info_basic_fr_phonenumber_nn not null,
+    fr_email varchar2(20),
+    fr_address varchar2(20),
+    fr_regdate date default sysdate
+    );
+    
+create table phoneInfo_basic(
+    idx number(6),
+    fr_name varchar2(20) constraint Info_basic_fr_name_nn not null,
+    fr_phonenumber varchar2(20) constraint Info_basic_fr_phonenumber_nn not null,
+    fr_email varchar2(20),
+    fr_address varchar2(20),
+    fr_regdate date default sysdate,
+    constraint Info_basic_idx_pk primary key(idx)
+    );
+
+desc info_basic;
+
+create table phoneInfo_univ(
+    idx number(6) constraint Info_univ_idx_pk primary key,
+    fr_u_major varchar2(20) default 'N',
+    fr_u_year number(1) default '1' 
+    constraint Info_univ_fr_u_year_ck check (fr_u_year > 0 and fr_u_year < 5),
+    fr_ref number(6) constraint Info_univ_fr_ref_fk references phoneInfo_basic(idx));
+    
+create table phoneInfo_univ(
+    idx number(6),
+    fr_u_major varchar2(20) default 'N',
+    fr_u_year number(1) default '1',
+    fr_ref number(6),
+    constraint Info_univ_idx_pk primary key(idx),
+    constraint fr_u_year check (fr_u_year > 0 and fr_u_year < 5),
+    constraint Info_univ_idx_fk foreign key(fr_ref) references phoneInfo_baisc(idx)
+    );
+desc info_univ;
+
+
+create table phoneInfo_com(
+    idx number(6) constraint Info_com_idx_pk primary key,
+    fr_c_company varchar2(20) default 'N',
+    fr_ref number(6) constraint Info_com_fr_ref_fk references phoneInfo_basic(idx));
+    
+create table phoneInfo_com(
+    idx number(6),
+    fr_c_company varchar2(20) default 'N',
+    fr_ref number(6),
+    constraint Info_com_idx_pk primary key(idx),
+    constraint Info_com_idx_fk foreign key(fr_ref) references Info_basic(idx));
+
+create table phoneInfo_cafe(
+    idx number(6),
+    fr_c_cafe varchar2(20) default 'N',
+    fr_ref number(6),
+    constraint Info_cafe_idx_pk primary key(idx),
+    constraint Info_cafe_idx_fk foreign key(fr_ref) references phoneInfo_basic(idx));
+
+--기본정보 입력
+insert into phonebook (pidx, pbname, pbphonenumber)
+    values (7,'JI', '123-1231-1211');
+--학교 친구 정보 입력
+insert into phonebook (pidx, pbname, pbphonenumber, pbaddr, pbemail, pbtype, pbmajor, pbgrade)
+    values(2,'SCOTT','123-4567-8901','부산','fff@ffff.fff','univ','fwaf',1);
+--회사 친구 정보 입력
+insert into phonebook (pidx, pbname, pbphonenumber, pbaddr, pbemail, pbtype, pbcompany, pbdept, pbjob)
+    values(3,'SON','153-4547-8901','대전','vff@ffff.ff','com','com','com','com');
+--모임 친구 정보 입력
+insert into phonebook (pidx, pbname, pbphonenumber, pbaddr, pbemail, pbtype, pbcafe, pbnickname)
+    values(4,'PARK','123-4347-8941','대구','vff@ffff.ff','cafe','baketball','3gard');
+
+
+select * from phonebook;
+
+truncate table phonebook;
+
+
+--출력
+
+--기본정보 출력
+select pidx, pbname, pbphonenumber from phonebook;
+
+--대학친구
+select pbname, pbphonenumber, pbmajor, pbgrade from phonebook where pbtype = 'univ';
+
+--회사친구
+select * from phonebook where pbtype = 'com';
+
+--동호회친구
+select * from phonebook where pbtype = 'cafe';
+
+
+--동호회친구 기본정보입력
+--기본정보 테이블 데이터입력
+insert into phoneinfo_basic(idx, fr_name, fr_phonenumber, fr_email, fr_address)
+    values(3, 'KIM', '010-5100-0501', 'abc@abcd.abc', '서울');
+--동호회친구정보 테이블 데이터 입력
+insert into phoneinfo_cafe(idx, fr_c_cafe, fr_ref)
+    values(3, 'clothing', 3);
+drop table phoneinfo_univ;
+
+
+--입력
+
+--학교친구 기본정보입력
+--기본정보 테이블 데이터입력
+insert into phoneinfo_basic(idx, fr_name, fr_phonenumber, fr_email, fr_address)
+    values(1, 'JI', '010-0100-0101', 'abc@abcd.abc', '서울');
+--학교친구정보 테이블 데이터 입력
+insert into phoneinfo_univ(idx, fr_u_major, fr_u_year, fr_ref)
+    values(1, 'design', 1, 1);
+    
+--회사친구 기본정보입력
+--기본정보 테이블 데이터입력
+insert into phoneinfo_basic(idx, fr_name, fr_phonenumber, fr_email, fr_address)
+    values(2, 'LEE', '010-0142-0112', 'abc@abcd.abc', '서울');
+--회사친구정보 테이블 데이터 입력
+insert into phoneinfo_com(idx, fr_c_company, fr_ref)
+    values(2, 'kakao', 2);
+
+
+--출력
+--학교친구
+select * 
+from phoneinfo_basic b, phoneinfo_univ u 
+where b.idx = u.fr_ref;
+--회사친구
+select *
+from phoneinfo_basic b, phoneinfo_com c
+where b.idx = c.fr_ref;
+--전체친구
+select * 
+from phoneinfo_basic b left outer join phoneinfo_univ u 
+on b.idx = u.fr_ref 
+left outer join phoneinfo_com c 
+on b.idx = c.fr_ref;
+
+
+
+
+drop table info_basic;
