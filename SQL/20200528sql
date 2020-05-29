@@ -1,0 +1,22 @@
+--INDEX
+
+desc user_ind_columns;
+
+select index_name, table_name, column_name
+from user_ind_columns;
+
+create table emp01
+as
+select * from emp;
+
+insert into emp01 select * from emp01;
+
+select count(*) from emp01;
+
+insert into emp01 (empno, ename) values (2222,'PARK');
+
+select * from emp01 where ename = 'SON';
+select * from emp01 where ename = 'PARK';
+
+create index emp01_ename_index on emp01 (ename);
+

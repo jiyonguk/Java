@@ -52,7 +52,3 @@ insert into dept02 (deptno, dname, loc) values (60, 'test', 'locTest');
 
 
 
-
-
-
-

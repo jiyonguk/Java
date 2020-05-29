@@ -57,7 +57,7 @@ create table phoneInfo_univ(
     fr_u_major varchar2(20) default 'N',
     fr_u_year number(1) default '1' 
     constraint Info_univ_fr_u_year_ck check (fr_u_year > 0 and fr_u_year < 5),
-    fr_ref number(6) constraint Info_univ_fr_ref_fk references phoneInfo_basic(idx));
+    fr_ref number(6) constraint Info_univ_fr_ref_fk references phoneInfo_basic(idx) on delete cascade);
     
 create table phoneInfo_univ(
     idx number(6),
@@ -81,7 +81,7 @@ create table phoneInfo_com(
     fr_c_company varchar2(20) default 'N',
     fr_ref number(6),
     constraint Info_com_idx_pk primary key(idx),
-    constraint Info_com_idx_fk foreign key(fr_ref) references Info_basic(idx));
+    constraint Info_com_idx_fk foreign key(fr_ref) references phoneInfo_basic(idx) on delete cascade);
 
 create table phoneInfo_cafe(
     idx number(6),
@@ -123,7 +123,6 @@ select * from phonebook where pbtype = 'com';
 --동호회친구
 select * from phonebook where pbtype = 'cafe';
 
-
 --동호회친구 기본정보입력
 --기본정보 테이블 데이터입력
 insert into phoneinfo_basic(idx, fr_name, fr_phonenumber, fr_email, fr_address)
@@ -139,29 +138,58 @@ drop table phoneinfo_univ;
 --학교친구 기본정보입력
 --기본정보 테이블 데이터입력
 insert into phoneinfo_basic(idx, fr_name, fr_phonenumber, fr_email, fr_address)
-    values(1, 'JI', '010-0100-0101', 'abc@abcd.abc', '서울');
+    values(1, 'KANG', '010-0100-0101', 'abc@abcd.abc', '서울');
 --학교친구정보 테이블 데이터 입력
 insert into phoneinfo_univ(idx, fr_u_major, fr_u_year, fr_ref)
     values(1, 'design', 1, 1);
     
+    
+    
+insert into phoneinfo_basic(idx, fr_name, fr_phonenumber, fr_email, fr_address)
+    values(PB_BASIC_IDX_SEQ.nextval, 'KANG', '010-0100-0101', 'abc@abcd.abc', '서울');
+insert into phoneinfo_univ(idx, fr_u_major, fr_u_year, fr_ref)
+    values(PB_UNIV_IDX_SEQ.nextval, 'design', 1, PB_BASIC_IDX_SEQ.currval);
+
+    
 --회사친구 기본정보입력
 --기본정보 테이블 데이터입력
 insert into phoneinfo_basic(idx, fr_name, fr_phonenumber, fr_email, fr_address)
-    values(2, 'LEE', '010-0142-0112', 'abc@abcd.abc', '서울');
+    values(PB_BASIC_IDX_SEQ.nextval, 'LEE', '010-0142-0112', 'abc@abcd.abc', '서울');
 --회사친구정보 테이블 데이터 입력
 insert into phoneinfo_com(idx, fr_c_company, fr_ref)
-    values(2, 'kakao', 2);
-
+    values(PB_COM_IDX_SEQ.nextval, 'kakao', PB_BASIC_IDX_SEQ.currval);
 
 --출력
 --학교친구
 select * 
 from phoneinfo_basic b, phoneinfo_univ u 
 where b.idx = u.fr_ref;
+
+--view : pb_univ_view
+
+create view pb_univ_view
+as
+select b.fr_name, b.fr_phonenumber, b.fr_address, b.fr_email, u.fr_u_major, u.fr_u_year
+from phoneinfo_basic b, phoneinfo_univ u 
+where b.idx = u.fr_ref;
+
+select * from pb_univ_view;
+
 --회사친구
 select *
 from phoneinfo_basic b, phoneinfo_com c
 where b.idx = c.fr_ref;
+
+--view : pb_univ_com
+
+create view pb_com_view
+as
+select b.fr_name, b.fr_phonenumber, b.fr_address, b.fr_email, c.fr_c_company
+from phoneinfo_basic b, phoneinfo_com c 
+where b.idx = c.fr_ref;
+
+select * from pb_com_view;
+
 --전체친구
 select * 
 from phoneinfo_basic b left outer join phoneinfo_univ u 
@@ -169,7 +197,82 @@ on b.idx = u.fr_ref
 left outer join phoneinfo_com c 
 on b.idx = c.fr_ref;
 
+--view : pb_all_view
+create view pb_all_view
+as
+select b.fr_name, b.fr_phonenumber, b.fr_address, b.fr_email, b.fr_regdate,
+        u.fr_u_major, u.fr_u_year, c.fr_c_company
+from phoneinfo_basic b left outer join phoneinfo_univ u 
+on b.idx = u.fr_ref 
+left outer join phoneinfo_com c 
+on b.idx = c.fr_ref;
+
+select * from pb_all_view;
+
+------------------------------------------
+--변경을 위한 sql
+
+--회사친구 정보변경
+update phoneinfo_basic
+set fr_email = 'kk@kkkk.kkk'
+where idx = (select fr_ref from phoneinfo_com);
+
+update phoneinfo_com
+set fr_c_compnay = 'naver'
+where fr_ref = (select idx from phoneinfo_basic where fr_name = 'JUNG');
+
+--학교친구 정보변경
+update phoneinfo_basic
+set fr_address = '부산'
+where idx = (select fr_ref from phoneinfo_univ);
+
+update phoneinfo_univ
+set fr_u_major = 'com'
+where fr_ref = (select idx from phoneinfo_basic where fr_name = 'JI');
+
+
+--삭제를 위한 sql
+
+--회사친구 정보삭제
+delete from phoneinfo_com
+where fr_ref = (select idx from phoneinfo_basic where fr_name = 'LEE');
+delete from phoneinfo_basic
+where fr_name = 'LEE';
+--학교친구 정보삭제
+delete from phoneinfo_univ
+where fr_ref = (select idx from phoneinfo_basic where fr_name = 'KANG');
+delete from phoneinfo_basic
+where fr_name = 'KANG';
+
+
+------------------------
+--squence
+
+--basic 테이블 seq
+create sequence pb_basic_idx_seq
+start with 0
+minvalue 0;
+
+--com 테이블 seq
+create sequence pb_com_idx_seq
+start with 0
+minvalue 0;
+
+--univ 테이블 seq
+create sequence pb_univ_idx_seq
+start with 0
+minvalue 0;
 
 
 
-drop table info_basic;
+
+
+
+
+
+
+
+
+
+
+
