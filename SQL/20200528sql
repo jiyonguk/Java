@@ -20,3 +20,6 @@ select * from emp01 where ename = 'PARK';
 
 create index emp01_ename_index on emp01 (ename);
 
+select * from emp;
+
+
