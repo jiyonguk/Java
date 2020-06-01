@@ -10,7 +10,9 @@ public class MangerMain {
 		Scanner sc = new Scanner(System.in);
 
 		while (true) {
+			System.out.println("========================");
 			System.out.println("1. 사원관리  2. 부서관리  3. 종료");
+			System.out.println("========================");
 			int num = sc.nextInt();
 			sc.nextLine();
 			switch (num) {

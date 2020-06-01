@@ -12,8 +12,9 @@ public class DeptManager {
 	static Scanner sc = new Scanner(System.in);
 
 	void deptManger() {
-
+		System.out.println("=============================");
 		System.out.println("1.입력  2.수정  3.삭제  4.검색 5.전체정보");
+		System.out.println("=============================");
 		int num = sc.nextInt();
 		sc.nextLine();
 		switch (num) {
@@ -51,9 +52,11 @@ public class DeptManager {
 
 			String sql = "insert into dept01 (deptno, dname, loc) "
 					+ " values(?,?,?)";
-
+			System.out.println("========================");
 			System.out.println("사원정보입력");
+			System.out.println("========================");
 			System.out.println("부서번호");
+			
 			int deptno = sc.nextInt();
 			sc.nextLine();
 
@@ -75,7 +78,6 @@ public class DeptManager {
 			System.out.println("=============================");
 			if (resultCnt > 0) {
 				System.out.println("정상적으로 입력 되었숩니다.");
-				System.out.println(resultCnt + "개 행이 입력되었습니다.");
 			} else {
 				System.out.println("입력이 되지 않았습니다.");
 			}
@@ -259,7 +261,6 @@ public class DeptManager {
 		try {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("Oracle 드라이버 로드성공");
 
 			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 			String user = "scott";
@@ -267,7 +268,6 @@ public class DeptManager {
 
 			// 2. 데이터베이스에 접속
 			conn = DriverManager.getConnection(url, user, pw);
-			System.out.println("데이터베이스에 접속해습니다.");
 
 			// 3. Statement : Connection
 			Statement stmt = conn.createStatement();
@@ -311,16 +311,12 @@ public class DeptManager {
 		PreparedStatement pstmt = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("Oracle 드라이버 로드성공");
 
 			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 			String user = "scott";
 			String pw = "tiger";
 
 			conn = DriverManager.getConnection(url, user, pw);
-			System.out.println("데이터베이스에 접속했습니다.");
-
-			
 
 			String sql = "select * from dept01";
 			pstmt = conn.prepareStatement(sql);

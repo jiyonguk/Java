@@ -12,8 +12,9 @@ public class EmpManager {
 	static Scanner sc = new Scanner(System.in);
 
 	void empManger() {
-
+		System.out.println("=============================");
 		System.out.println("1.입력  2.수정  3.삭제  4.검색 5.전체정보");
+		System.out.println("=============================");
 		int num = sc.nextInt();
 		sc.nextLine();
 		switch (num) {
@@ -51,8 +52,9 @@ public class EmpManager {
 
 			String sql = "insert into emp01 (empno, ename, job, mgr, hiredate, sal, comm, deptno ) "
 					+ " values(?,?,?,?,sysdate,?,?,?)";
-
+			System.out.println("========================");
 			System.out.println("사원정보입력");
+			System.out.println("========================");
 			System.out.println("사원번호");
 			int empno = sc.nextInt();
 			sc.nextLine();
@@ -145,8 +147,9 @@ public class EmpManager {
 			String pw = "tiger";
 
 			conn = DriverManager.getConnection(url, user, pw);
-
+			System.out.println("========================");
 			System.out.println("수정하실 정보의 사원번호를 입력해주세요");
+			System.out.println("========================");
 			int empno = sc.nextInt();
 			sc.nextLine();
 			String sql = "update emp01 set ename = ?, deptno = ?, sal = ? where empno = " + empno;
@@ -225,9 +228,9 @@ public class EmpManager {
 			conn = DriverManager.getConnection(url, user, pw);
 
 			String sql = "delete from emp01 where empno = ?";
-
+			System.out.println("========================");
 			System.out.println("삭제하실 사원번호입력");
-
+			System.out.println("========================");
 			int empno = sc.nextInt();
 			sc.nextLine();
 
@@ -281,7 +284,6 @@ public class EmpManager {
 		try {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("Oracle 드라이버 로드성공");
 
 			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 			String user = "scott";
@@ -289,12 +291,12 @@ public class EmpManager {
 
 			// 2. 데이터베이스에 접속
 			conn = DriverManager.getConnection(url, user, pw);
-			System.out.println("데이터베이스에 접속했습니다.");
 
 			// 3. Statement : Connection
 			Statement stmt = conn.createStatement();
-
+			System.out.println("========================");
 			System.out.println("회원의 이름을 입력해주세요");
+			System.out.println("========================");
 			String searchName = sc.nextLine();
 
 			String sql = "select empno, ename, job, mgr, hiredate, sal, comm, deptno from emp01" + " where ename = '"
@@ -342,17 +344,15 @@ public class EmpManager {
 		PreparedStatement pstmt = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("Oracle 드라이버 로드성공");
 
 			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 			String user = "scott";
 			String pw = "tiger";
 
 			conn = DriverManager.getConnection(url, user, pw);
-			System.out.println("데이터베이스에 접속했습니다.");
 
 		
-
+			System.out.println("========================");
 			String sql = "select * from emp01";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
@@ -375,7 +375,7 @@ public class EmpManager {
 				System.out.print(rs.getString(7) + "\t");
 				System.out.print(rs.getString(8) + "\n");
 			}
-
+			System.out.println("========================");
 			rs.close();
 			pstmt.close();
 			// 4. close
