@@ -325,6 +325,9 @@ public class DeptManager {
 
 			rs = stmt.executeQuery(sql);
 
+			System.out.print("부서번호" + "\t");
+			System.out.print("부서이름" + "\t");
+			System.out.print("지역" + "\n");
 			while (rs.next()) {
 				System.out.print(rs.getInt(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");
