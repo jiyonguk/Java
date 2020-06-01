@@ -141,17 +141,14 @@ from dual;
 
 
 
+select *from emp01 where ename = 'scott';
 
 
 
 
 
-
-
-
-
-
-
+insert into emp01 (empno, ename, job, mgr, hiredate, sal, comm, deptno )
+values(1,1,1,1,to_date(sysdate,yymmdd),1,1,1);
 
 
 

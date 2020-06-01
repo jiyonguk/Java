@@ -21,12 +21,12 @@ public class JDBCTest2 {
 
 			// 2. 데이터베이스에 접속
 			conn = DriverManager.getConnection(url, user, pw);
-			System.out.println("데이터베이스에 접속해습니다.");
+			System.out.println("데이터베이스에 접속했습니다.");
 
 			// 3. Statement : Connection
 			Statement stmt = conn.createStatement();
 
-			String sql = "select * from dept order by deptno";
+			String sql = "select * from emp order by deptno";
 
 			// select의 결과는 ResultSet이 받는다
 			// excuteQuery(sql문) -> ResultSet
@@ -40,7 +40,12 @@ public class JDBCTest2 {
 //				System.out.print(rs.getString("loc") + "\n");
 				System.out.print(rs.getInt(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");
-				System.out.print(rs.getString(3) + "\n");
+				System.out.print(rs.getString(3) + "\t");
+				System.out.print(rs.getString(4) + "\t");
+				System.out.print(rs.getString(5) + "\t");
+				System.out.print(rs.getString(6) + "\t");
+				System.out.print(rs.getString(7) + "\t");
+				System.out.print(rs.getString(8) + "\n");
 			}
 
 			rs.close();
