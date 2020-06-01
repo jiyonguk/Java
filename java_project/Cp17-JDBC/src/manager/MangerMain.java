@@ -3,11 +3,11 @@ package manager;
 import java.util.Scanner;
 
 public class MangerMain {
-
+	static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {
-		EmpManager e = new EmpManager();
+		//EmpManager e = new EmpManager();
 		DeptManager d = new DeptManager();
-		Scanner sc = new Scanner(System.in);
+		
 
 		while (true) {
 			System.out.println("========================");
@@ -17,7 +17,7 @@ public class MangerMain {
 			sc.nextLine();
 			switch (num) {
 			case 1:
-				e.empManger();
+				//e.empManger();
 				break;
 			case 2:
 				d.deptManger();
