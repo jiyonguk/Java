@@ -49,7 +49,7 @@ public class DeptManager {
 
 			conn = DriverManager.getConnection(url, user, pw);
 
-			String sql = "insert into dept01 (deptni, dname, loc) "
+			String sql = "insert into dept01 (deptno, dname, loc) "
 					+ " values(?,?,?)";
 
 			System.out.println("사원정보입력");
@@ -271,7 +271,7 @@ public class DeptManager {
 
 			// 3. Statement : Connection
 			Statement stmt = conn.createStatement();
-
+			
 			System.out.println("부서의 이름 혹은 지역을 입력해주세요");
 			String search = sc.nextLine();
 
@@ -308,6 +308,7 @@ public class DeptManager {
 
 		Connection conn = null;
 		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			System.out.println("Oracle 드라이버 로드성공");
@@ -319,11 +320,11 @@ public class DeptManager {
 			conn = DriverManager.getConnection(url, user, pw);
 			System.out.println("데이터베이스에 접속했습니다.");
 
-			Statement stmt = conn.createStatement();
+			
 
 			String sql = "select * from dept01";
-
-			rs = stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(sql);
 
 			System.out.print("부서번호" + "\t");
 			System.out.print("부서이름" + "\t");
@@ -335,7 +336,7 @@ public class DeptManager {
 			}
 
 			rs.close();
-			stmt.close();
+			pstmt.close();
 			// 4. close
 			conn.close();
 

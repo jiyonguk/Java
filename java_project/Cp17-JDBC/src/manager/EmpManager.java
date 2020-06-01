@@ -339,6 +339,7 @@ public class EmpManager {
 
 		Connection conn = null;
 		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			System.out.println("Oracle 드라이버 로드성공");
@@ -350,11 +351,11 @@ public class EmpManager {
 			conn = DriverManager.getConnection(url, user, pw);
 			System.out.println("데이터베이스에 접속했습니다.");
 
-			Statement stmt = conn.createStatement();
+		
 
 			String sql = "select * from emp01";
-
-			rs = stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(sql);
 			System.out.print("사원번호" + "\t");
 			System.out.print("이름" + "\t");
 			System.out.print("직급" + "\t");
@@ -376,7 +377,7 @@ public class EmpManager {
 			}
 
 			rs.close();
-			stmt.close();
+			pstmt.close();
 			// 4. close
 			conn.close();
 
