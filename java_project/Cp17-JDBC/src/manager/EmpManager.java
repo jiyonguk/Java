@@ -289,7 +289,7 @@ public class EmpManager {
 
 			// 2. 데이터베이스에 접속
 			conn = DriverManager.getConnection(url, user, pw);
-			System.out.println("데이터베이스에 접속해습니다.");
+			System.out.println("데이터베이스에 접속했습니다.");
 
 			// 3. Statement : Connection
 			Statement stmt = conn.createStatement();
@@ -355,8 +355,16 @@ public class EmpManager {
 			String sql = "select * from emp01";
 
 			rs = stmt.executeQuery(sql);
-
+			System.out.print("사원번호" + "\t");
+			System.out.print("이름" + "\t");
+			System.out.print("직급" + "\t");
+			System.out.print("관리자" + "\t");
+			System.out.print("입사일" + "\t\t\t");
+			System.out.print("급여" + "\t");
+			System.out.print("보너스" + "\t");
+			System.out.print("부서번호" + "\n");
 			while (rs.next()) {
+
 				System.out.print(rs.getInt(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");
 				System.out.print(rs.getString(3) + "\t");
