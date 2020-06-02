@@ -1,19 +1,19 @@
 package manager;
 
-
-
 public class Dept {
 
-	int deptno;
-	String dname;
-	String Loc;
-	
+	private int deptno;
+	private String dname;
+	private String loc;
+
+	public Dept() {
+	}
+
 	public Dept(int deptno, String dname, String loc) {
 		this.deptno = deptno;
 		this.dname = dname;
-		this.Loc = loc;
+		this.loc = loc;
 	}
-
 
 	public int getDeptno() {
 		return deptno;
@@ -32,16 +32,33 @@ public class Dept {
 	}
 
 	public String getLoc() {
-		return Loc;
+		return loc;
 	}
 
 	public void setLoc(String loc) {
-		Loc = loc;
+		this.loc = loc;
 	}
 
 	@Override
 	public String toString() {
-		return "Dept [deptno=" + deptno + ", dname=" + dname + ", Loc=" + Loc + "]";
+		return "Dept [deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + "]";
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }

@@ -8,6 +8,7 @@
 
 --전화번호부 (Contact)
 
+select * from phonebook;
 create table phonebook(
     
     pidx number(1) constraint contact_pidx_pk primary key,

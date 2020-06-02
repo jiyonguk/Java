@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class PhoneBookManager {
 
 	private static PhoneBookManager manager = new PhoneBookManager();
+	
+	PhoneBookDao dao = new PhoneBookDao();
 
 	public static PhoneBookManager getInstance() {
 		return manager;
@@ -183,6 +185,7 @@ public class PhoneBookManager {
 			System.out.println("찾으시는 이름의 정보가 존재하지 않습니다.");
 		} else {
 
+			dao.deleteInfo(name);
 			pBooks.remove(searchIndex);
 
 			System.out.println("요청하신 이름의 정보를 삭제했습니다");

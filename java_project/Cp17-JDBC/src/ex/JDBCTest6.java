@@ -40,7 +40,7 @@ public class JDBCTest6 {
 			// 3. SQL처리
 			// Statement or PreparedStatement
 			// pstmt = conn.prepareStatement(SQL 문장)
-			String sql = "insert into dept (deptno, dname, loc) "
+			String sql = "insert into dept01 (deptno, dname, loc) "
 					+ " values(?,?,?)";
 			
 			pstmt = conn.prepareStatement(sql);
