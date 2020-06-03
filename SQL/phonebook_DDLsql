@@ -11,7 +11,7 @@
 drop table phonebook;
 create table phonebook(
     
-    pidx number(1) constraint contact_pidx_pk primary key,
+    pidx number(2) constraint contact_pidx_pk primary key,
     pbname varchar2(20) constraint contact_pbname_nn not null,
     pbphonenumber varchar2(13) constraint contact_pbphonenumber_nn not null,
     pbaddr varchar2(20) default 'N',
@@ -278,4 +278,4 @@ START WITH 1;
 
 INSERT INTO phonebook(pidx) VALUES(PB_SEQ.nextval);
 
-SELECT pb_SEQ.CURRVAL FROM DUAL;
+SELECT pb_SEQ.nextval FROM DUAL;
