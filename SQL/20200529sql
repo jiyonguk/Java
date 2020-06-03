@@ -26,3 +26,7 @@ create view member_view
 as
 select m_id, m_name, m_photoname
 from member;
+
+insert into phoneinfo_basic
+(pidx, pbname, pbphonenumber, pbaddr, pbemail, pbtype, pbmajor, pbgrade)
+values(1,1,1,1,1,1,1,1);

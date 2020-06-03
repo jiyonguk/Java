@@ -8,7 +8,7 @@
 
 --전화번호부 (Contact)
 
-select * from phonebook;
+drop table phonebook;
 create table phonebook(
     
     pidx number(1) constraint contact_pidx_pk primary key,
@@ -269,11 +269,13 @@ minvalue 0;
 
 
 
+select  * from phonebook;
 
 
+CREATE SEQUENCE pb_SEQ
+INCREMENT BY 1
+START WITH 1;
 
+INSERT INTO phonebook(pidx) VALUES(PB_SEQ.nextval);
 
-
-
-
-
+SELECT pb_SEQ.CURRVAL FROM DUAL;
