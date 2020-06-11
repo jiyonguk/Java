@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game</title>
+    <script>
+        while(confirm('GAME START')){
+        var rnum = Math.random()*100+1;
+        alert('1에서 100사이의 숫자를 맞추세요.')
+        var i = 10;
+        while(i>0){
+            
+            var userNumber = prompt('숫자를 입력해주세요');
+            if(userNumber == null){
+                continue;
+            }
+            if(Number(userNumber)==parseInt(rnum)){
+                alert('WIN');
+                break;
+            }else if(Number(userNumber)>parseInt(rnum)){
+                alert('LOW');
+                i--;
+    
+            }else if(Number(userNumber)<parseInt(rnum)){
+                alert('HIGH');
+                i--;
+            }
+            
+            alert('남은횟수 = '+i);
+        }
+        if(i==0){
+            alert('LOSE');
+        }
+    
+    }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+
+
