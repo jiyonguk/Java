@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript : object 객체 </title>
+    <script>
+
+        var obj = {}; //기본 객체 생성 (new object())
+        
+        // alert(typeof(obj));
+
+        var obj = {
+
+            number:1,
+            str:'String',
+            check:false,
+            method:function(){},
+            object: {},
+            arr:[1,2,3,4,5]
+
+        };
+        console.log(obj);
+
+
+        var person = {
+            name:'손흥민',
+            age:27,
+            hello:function(){
+                alert('안녕하세요\n'+this.name+' 입니다.');
+                alert(this.age+'세 입니다.')
+                this.bye();
+            },
+            bye:function(){
+                alert('bye~!!');
+            }
+
+        };
+
+        //person.hello();
+
+        // person.job='player';
+
+        // alert(person.job);
+
+        // 생성자 함수
+        // new 키워드를 이용해서 객체를 생성
+        // 생성자 함수의 이름은 대문자로 시작
+
+        function Student(uname, kor_score, math_score, eng_score){
+            this.name = uname;
+            this.kor = kor_score;
+            this.math = math_score;
+            this.eng = eng_score;
+
+            // this.getSum = function(){
+            //     return this.kor + this.math + this.eng;
+            // }
+
+            // this.getAvg = function(){
+            //     return this.getSum()/3;
+            // }
+        };
+
+        // var s1 = new Student();
+
+        Student.prototype.getSum = function(){
+            return this.kor + this.math + this.eng;
+        };
+
+        Student.prototype.getAvg = function(){
+            return this.getSum()/3;
+        };
+
+        var students = [];
+        students.push(new Student('A1',90,50,60));
+        students.push(new Student('A2',83,40,90));
+        students.push(new Student('A3',37,30,10));
+        students.push(new Student('A4',46,20,20));
+        students.push(new Student('A5',77,10,30));
+        students.push(new Student('A6',54,14,40));
+        students.push(new Student('A7',66,6,6));
+        students.push(new Student('A8',42,8,9));
+        students.push(new Student('A9',94,89,42));
+        students.push(new Student('A10',50,60,44));
+
+        
+
+        // students.push({name:'A1',kor:90,math:50,eng:60});
+        // students.push({name:'A2',kor:83,math:40,eng:90});
+        // students.push({name:'A3',kor:37,math:30,eng:10});
+        // students.push({name:'A4',kor:46,math:20,eng:20});
+        // students.push({name:'A5',kor:77,math:10,eng:30});
+        // students.push({name:'A6',kor:54,math:14,eng:40});
+        // students.push({name:'A7',kor:66,math:6,eng:6});
+        // students.push({name:'A8',kor:42,math:8,eng:9});
+        // students.push({name:'A9',kor:94,math:89,eng:42});
+        // students.push({name:'A10',kor:50,math:60,eng:44});
+
+        // for(var i=0;i<students.length;i++){
+        //     students[i].getSum = function(){
+        //         return this.kor+this.math+this.eng;
+        //     };
+        // };
+
+        // for(var i=0;i<students.length;i++){
+        //     students[i].getAvg = function(){
+        //         return this.getSum()/3;
+        //     };
+        // };
+
+        // console.log(students);
+        var list ='';
+
+        for(var i=0; i<students.length; i++){
+
+            list += '<h4>'
+            list += '이름'+students[i].name;
+            list += '총점'+students[i].getSum();
+            list += '평균'+students[i].getAvg();
+            list += '</h4>';
+        };
+
+        document.write(list);
+
+
+        function Rectangle(w,h){
+            var width = w;
+            var height = h;
+
+            this.getWidth = function(){
+                return width;
+            };
+
+            this.setWidth = function(w){
+                width = w;
+            };
+
+
+            this.getArea = function(){
+                return width*height;
+
+            };
+
+        };
+
+        var rac = new Rectangle(10,4);
+
+        alert(rac.getArea());
+
+        // rac.height = -3;
+
+        // alert(rac.getArea());
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
