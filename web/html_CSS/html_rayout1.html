@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>레이아웃</title>
+        <meta charset="utf-8">
+        <style>
+        
+            div.border{
+                border: 1px solid #aaaaaa;
+            }
+            #header{
+/*                표현영역의 사이즈 설정*/
+                width: 798px;
+                height: 100px;
+                
+                background-color: #ff0000;
+                
+                margin: 0 auto;
+                
+                text-align: center;
+                line-height: 100px;
+                
+                font-size: 2em;
+                color: aliceblue;
+                font-weight: bold;
+            }
+            
+            #nav{
+                width: 798px;
+                height: 30px;
+                
+                background-color: green;
+                
+                margin: 0 auto;
+                
+                text-align: center;
+                line-height: 30px;
+                
+                font-size: 2em;
+                color: aliceblue;
+                font-weight: bold;
+            }
+            
+            #aside{
+                width: 197px;
+                height: 300px;
+                
+                background-color: darkviolet;
+                
+/*                margin: 0 auto;*/
+                
+                text-align: center;
+                line-height: 300px;
+                
+                font-size: 2em;
+                color: aliceblue;
+                font-weight: bold;
+                
+                float: left
+            }
+            
+            #content{
+                width: 598px;
+                height: 300px;
+                
+                background-color: blue;
+                
+/*                margin: 0 auto;*/
+                
+                text-align: center;
+                line-height: 300px;
+                
+                font-size: 2em;
+                color: aliceblue;
+                font-weight: bold;
+                
+                float: right;
+            }
+            
+            #wrap {
+                
+                width: 800x;
+               
+                margin: 0 auto;
+                
+/*                overflow: hidden;*/
+            }
+            
+            #footer{
+                width: 798px;
+                height: 100px;
+                
+                background-color: #ff0000;
+                
+                margin: 0 auto;
+                
+                text-align: center;
+                line-height: 100px;
+                
+                font-size: 2em;
+                color: aliceblue;
+                font-weight: bold;
+                
+                clear: both;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header" class="border">header</div>
+        <div id="nav" class="border">navigation</div>
+        <div id="wrap">
+        <div id="aside" class="border">aside</div>
+        <div id="content" class="border">content</div>
+        </div>
+        <div id="footer" class="border">footer</div>
+    </body>
+</html>

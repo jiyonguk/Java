@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CSS 속성</title>
+        <meta charset="utf-8">
+        <style>
+/*
+            CSS에서 사용하는 단위 : px, %, em
+            px : 절대 단위
+            % : 비율
+            em : 배수
+            
+            16px = 
+*/
+            tr:nth-child(1)>td:nth-child(2){
+                font-size: 16px;
+                color: red;
+                
+            }
+            
+            tr:nth-child(1)>td:nth-child(3){
+                font-size: 24px;
+                color: blue;
+                
+            }
+            
+            tr:nth-child(1)>td:nth-child(4){
+                font-size: 32px;
+                color: green;
+                
+            } 
+            
+            tr:nth-child(2)>td:nth-child(2){
+                font-size: 1em;
+                color: #ff0000;
+                
+            }
+            
+            tr:nth-child(2)>td:nth-child(3){
+                font-size: 1.5em;
+                color: #0000ff;
+                
+            }
+            
+            tr:nth-child(2)>td:nth-child(4){
+                font-size: 2em;
+                color: #00ff00;
+                
+            }
+            
+            tr:nth-child(3)>td:nth-child(2){
+                font-size: 100%;
+                color: rgb(256,0,0);
+                
+            }
+            
+            tr:nth-child(3)>td:nth-child(3){
+                font-size: 150%;
+                color: rgb(0,0,256);
+                
+            }
+            
+            tr:nth-child(3)>td:nth-child(4){
+                font-size: 200%; 
+                color: rgb(0,256,0);
+            }
+            
+            body{
+                background-image: url('../image/test.jpg');
+/*                background-size: 50%;*/
+                background-size: 25%;
+                background-repeat: no-repeat;
+                background-position: bottom;
+            }
+            
+            hr {
+                border: 0;
+                border-top: thin solid #AAAAAA;
+            }
+            
+            div.box{
+                width: 200px;
+                height: 200px;
+/*                border: 1px solid gray;*/
+            }
+           
+            #box1 {
+                background-color: red;
+                border-width: 10px;
+                border-style: solid;
+                border-color: gray;
+                
+                padding: 10px;
+                margin: 10px;
+            }
+           
+            #box2 {
+                background-color: blue;
+                
+                border: 1px solid gray;
+                
+/*                border-radius: 100px;*/
+                border-radius: 50%;
+            }
+        
+            img{
+                border-radius: 50%;
+            }
+    
+            span {
+                border: 1px solid red;
+            }
+     
+            #box {
+                border: 1px solid blue;
+                display: none;
+            }
+            
+            #bg{
+                height: 300px;
+                width: 100%;
+                background-image: url(../image/test.jpg);
+                background-size: cover;
+                
+                
+                font-size: 4em;
+                color: white;
+                
+            }
+            
+            .font_kor{
+                font-family: '궁서체', '돋음', '돋음체';
+                text-align: center;
+                line-height: 300px;
+            }
+            
+            .font_web{
+                
+            }
+       
+        </style>
+    </head>
+    <body>
+        
+        <div id="bg" class="font_web">미니언즈</div>
+        
+        <hr>
+        
+        <span>Dummy</span>
+        
+        <div id="box">
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+        </div>
+        <span>Dummy</span>
+        
+        
+        <hr>
+        
+        <img src="../image/test.jpg" width="100px" height="100px">
+        <div class="box" id="box1"></div>
+        <div class="box" id="box2"></div>
+        
+        
+        <hr>
+        
+        <table border="1">
+         
+            <tr>
+                <td>px</td>
+                <td>HTML5-16px</td>
+                <td>HTML5-24px</td>
+                <td>HTML5-32px</td>
+            </tr>            
+            <tr>
+                <td>em</td>
+                <td>HTML5-1em</td>
+                <td>HTML5-1.5em</td>
+                <td>HTML5-2em</td>
+            </tr> 
+            <tr>
+                <td>%</td>
+                <td>HTML5-100%</td>
+                <td>HTML5-150%</td>
+                <td>HTML5-200%</td>
+            </tr>
+        </table>
+    </body>
+</html>
