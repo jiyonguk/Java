@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class PhoneInfoDao {
 
-	void insert() {
+	void insert(PhoneInfo_basic info) {
 
 		Connection conn = null;
 		PreparedStatement ptsmt = null;
@@ -18,7 +18,7 @@ public class PhoneInfoDao {
 		try {
 			conn = ConnectionProvider.getConnection();
 			
-			String sql = "insert into "
+			String sql = "insert into phoneinfo_basic values()";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
