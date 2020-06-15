@@ -30,7 +30,7 @@
 
 
             setTimeout(function () {
-                header1.onclick
+                header1.onclick();
             }, 3000);
 
             var myForm = document.getElementById('my-form')
@@ -49,14 +49,14 @@
                 if(pw.value != repw.value || uid.value.length <1){
                     alert('다시입력해주세요.')
                     return false;
-                }
+                };
             };
-
+        };
             function show(d) {
                 alert(d);
             };
 
-        };
+        
 
     </script>
 </head>
@@ -80,8 +80,8 @@
     <h1 id="header1">HEADER-1</h1>
 
     <h1 id="header2" 
-    onclick="show('String')"
-     style="background-color: aliceblue;">header-2</h1>
+        onclick="show('String')"
+        style="background-color: aliceblue;"> header-2 </h1>
 
 
 </body>
