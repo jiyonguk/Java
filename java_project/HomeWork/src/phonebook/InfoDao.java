@@ -32,7 +32,7 @@ public class InfoDao {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				phoneInfo_basic info = new phoneInfo_basic(rs.getInt("fr_idx"), rs.getString("name"), rs.getString(""), phoneNumber, email, address);
+				phoneInfo_basic info = new phoneInfo_basic(rs.getInt("fr_idx"), rs.getString("name"), rs.getString("phoneNumber"), rs.getString(""), email, address);
 			}
 			
 			
@@ -43,5 +43,25 @@ public class InfoDao {
 		}
 	
 		return list;
+	}
+	
+	void addInfo() {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+		String user = "scott";
+		String pw = "tiger";
+		
+		try {
+			conn = DriverManager.getConnection(url, user, pw);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
