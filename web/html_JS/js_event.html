@@ -26,62 +26,174 @@
                 alert(this.innerText);
                 this.style.color = 'red';
                 this.style.backgroundColor = 'black';
-            };
+            }
 
 
-            setTimeout(function () {
-                header1.onclick();
-            }, 3000);
+            // setTimeout(function () {
+            //     header1.onclick();
+            // }, 3000)
 
             var myForm = document.getElementById('my-form')
 
-            myForm.onsubmit = function(){
+            myForm.onsubmit = function () {
 
                 var uid = document.getElementById('uid');
 
                 console.log(uid.value);
 
-                if(uid.value == null || uid.value.length<1){
+                if (uid.value == null || uid.value.length < 1) {
                     alert('아이디 정보를 입력해주세요.')
                     return false;
                 };
 
-                if(pw.value != repw.value || uid.value.length <1){
-                    alert('다시입력해주세요.')
-                    return false;
-                };
-            };
-        };
-            function show(d) {
-                alert(d);
-            };
 
-        
+                var pw = document.getElementById('pw');
+                var repw = document.getElementById('repw');
+
+                if (pw.value == null || pw.value.length < 1) {
+                    alert('비밀번호를 입력해주세요.');
+                    pw.focus()
+                    return false;
+                }
+
+                if (repw.value == null || repw.value.length < 1) {
+                    alert('비밀번호 확인이 필요합니다.');
+                    pw.focus()
+                    return false;
+                }
+
+                if (pw.value != repw.value) {
+                    alert('비밀번호가 같지않습니다.');
+                    return false;
+                }
+
+                var agree = document.getElementById('agree');
+
+                console.log(agree.checked);
+
+                if (!agree.checked) {
+                    alert('개인정보 동의해주세요.');
+                    return false;
+                }
+
+
+
+
+            }
+        }
+
+        var div1 = document.getElementById('box1');
+        var div2 = document.getElementById('box2');
+        var h1 = document.getElementById('box3');
+
+
+        div1.addEventListener('click', function(){
+            alert('box1-onclick')
+        })
+
+        // div1.onclick = function(){
+        //     alert('box1-onclick')
+        // }
+        div2.onclick = function(){
+            alert('box2-onclick')
+        }
+        h1.onclick = function(e){
+
+            var event = e || window.event;
+            alert('h1-onclick')
+
+            // event.cancelBubble = true;
+
+            // //이벤트의 전달을 막는다
+            // if(event.stopPropagation){
+            //     event.stopPropagation();
+            // }
+        }
+
+
+        function show(d) {
+            alert(d);
+        }
+
+
 
     </script>
+    <style>
+        #agree+div {
+            display: block;
+
+        }
+
+        #agree:checked+div {
+            display: none;
+        }
+
+        .box {
+            border: 3px solid;
+            padding: 10px;
+
+        }
+
+        #box1 {
+            background-color: red;
+        }
+
+        #box2 {
+            background-color: black;
+            width: 75%;
+
+        }
+
+        #box3 {
+            background-color: blue;
+            width: 50%;
+            height: 30px;
+        }
+    </style>
 </head>
 
 <body>
 
+    <div id="box1" class="box">
+        <div id="box2" class="box">
+
+            <h1 id="box3" class="box">클릭하세요</h1>
+
+        </div>
+
+    </div>
+
     <form action="http:www.naver.com" id="my-form">
 
-        <label>아이디</label>
-        <input type="text" name="uid" id="uid">
+        <label for="uid">아이디</label>
+        <input type="text" name="uid" id="uid" placeholder="아이디를 입력하세요." autocomplete="">
         <br>
 
-        <label>비밀번호</label>
-        <input type="password" name="pw" id="pw">
+        <label for="pw">비밀번호</label>
+        <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요.">
         <br>
         <label>비밀번호 확인</label>
         <input type="password" name="repw" id="repw">
         <br>
+
+        <label for="agree">개인정보 동의</label>
+        <input type="checkbox" id="agree">
+        <div>
+            <textarea>
+                개인정보 활용에 대한 안내입니다.
+
+            </textarea>
+        </div>
+        <br>
+
+        <label>성별</label>
+        <input type="radio" name="gender" value="1" checked>남자
+        <input type="radio" name="gender" value="2">여자
         <input type="submit">
     </form>
     <h1 id="header1">HEADER-1</h1>
 
-    <h1 id="header2" 
-        onclick="show('String')"
-        style="background-color: aliceblue;"> header-2 </h1>
+    <h1 id="header2" onclick="show('String')" style="background-color: aliceblue;"> header-2 </h1>
 
 
 </body>
