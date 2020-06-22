@@ -1,194 +1,60 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="ko">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
-    <meta charset="utf-8">
+    <script src="http://code.jquery.com/1.12.4.js"></script>
+    <script>
+
+    </script>
     <style>
-        #insert {
-            width: 100px;
-            height: 40px;
-            background-color: black;
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header{
+            margin-bottom: 15px;
+            border-bottom: 1px solid;
+        }
+
+        label{
+            display: block;
+            background-color: #ff9999;
             color: white;
         }
-
-        header {
-            margin: 20px;
-            padding: 20px;
-            border-bottom: 1px solid;
-        }
-
-        #content {
-            margin: 20px;
-            padding: 20px;
-            border-bottom: 1px solid;
-        }
-
-        #listarea {
-            margin: 20px;
-            padding: 20px;
-
-        }
-
-        .listTable {
-            width: 100%;
-            border: 1px solid;
-            border-collapse: collapse;
-            text-align: center;
-        }
-
-        .listTable td,th {
-            border: 1px solid;
-
-        }
     </style>
-
-
 </head>
-
 <body>
     <header>
-        <h1>회원관리</h1>
+        <h1>회원등록</h1>
     </header>
-    <div id="content">
-        <h2>회원등록</h2>
+    <div id="reg">
+        <h3>회원정보 입력</h3>
         <form id="regForm">
-            <table>
+            <table id="listTable">
                 <tr>
-                    <td id="id">
-                        아이디
-                        <br>
-                        <input type="text" id="uid" placeholder="아이디" required>
-                    </td>
-                    <td id="pw">
-                        비밀번호
-                        <br>
-                        <input type="password" id="upw" placeholder="비밀번호" required>
-                    </td>
-                    <td id="name">
-                        이름
-                        <br>
-                        <input type="text" id="uname" placeholder="이름" required>
+                    <td>
+                        <label>아이디</label>
+                        <input type="text" id="id">
                     </td>
                     <td>
-                        <input type="submit" id="insert" value="등록">
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <h2>회원수정</h2>
-        <form id="editForm">
-            <table>
-                <tr>
-                    <td id="id">
-                        아이디
-                        <br>
-                        <input type="text" id="uid" placeholder="아이디" required>
-                    </td>
-                    <td id="pw">
-                        비밀번호
-                        <br>
-                        <input type="password" id="upw" placeholder="비밀번호" required>
-                    </td>
-                    <td id="name">
-                        이름
-                        <br>
-                        <input type="text" id="uname" placeholder="이름" required>
+                        <label>비밀번호</label>
+                        <input type="password" id="pw">
                     </td>
                     <td>
-                        <input type="submit" id="insert" value="등록">
+                        <label>이름</label>
+                        <input type="text" id="name">
+                    </td>
+                    <td>
+                        <input type="submit" value="저장">
                     </td>
                 </tr>
             </table>
         </form>
     </div>
-    <div id="listarea">
-        <h2>회원리스트</h2>
-        <table class="listTable">
-            <div id="list"></div>
-        </table>
-    </div>
+    
 </body>
-
-<script>
-    //회원 정보를 저장할 배열
-    var members = [];
-
-    //회원 데이터를 객체화
-    function Member(mid, mname, mpw) {
-        this.id = mid;
-        this.name = mname;
-        this.pw = mpw;
-    }
-
-    function addMember(member) {
-        members.push(member);
-        console.log(members);
-        displayTable();
-    }
-
-    function createMember() {
-        var id = document.getElementById('uid').value;
-        var name = document.getElementById('uname').value;
-        var pw = document.getElementById('upw').value;
-
-        addMember(new Member(id, name, pw));
-
-        return false;
-    }
-
-    //공통함수
-    Member.prototype.toString = function () {
-        var makeHtml = '';
-        makeHtml += '<td>';
-        makeHtml += this.id;
-        makeHtml += '</td>';
-        makeHtml += '<td>';
-        makeHtml += this.name;
-        makeHtml += '</td>';
-        makeHtml += '<td>';
-        makeHtml += this.pw;
-        makeHtml += '</td>';
-        return makeHtml;
-    }
-
-    function displayTable() {
-
-        var listHtml = '';
-        listHtml += '<table class="listTable"';
-        listHtml += '<tr>';
-        listHtml += '<th>index</th>';
-        listHtml += '<th>아이디</th>';
-        listHtml += '<th>비밀번호</th>';
-        listHtml += '<th>이름</th>';
-        listHtml += '<th>관리</th>';
-        listHtml += '</tr>'
-
-        for (let i = 0; i < members.length; i++) {
-            listHtml += '<tr>';
-            listHtml += '<th>'+i+'</th>';
-            listHtml += '<th>'+members[i].id+'</th>';
-            listHtml += '<th>'+members[i].pw+'</th>';
-            listHtml += '<th>'+members[i].name+'</th>';
-            listHtml += '<th>관리</th>';
-            listHtml += '</tr>';
-        }
-
-        listHtml += '</table>';
-
-        var listTable = document.getElementById('list');
-
-        listTable.innerHTML = listHtml;
-    }
-
-    window.onload = function(){
-
-        displayTable();
-
-        document.getElementById('regForm').onsubmit = createMember;
-    }
-
-
-</script>
-
 </html>

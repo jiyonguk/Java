@@ -32,7 +32,7 @@ public class InfoDao {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				phoneInfo_basic info = new phoneInfo_basic(rs.getInt("fr_idx"), rs.getString("name"), rs.getString("phoneNumber"), rs.getString(""), email, address);
+				phoneInfo_basic info = new phoneInfo_basic(rs.getInt("fr_idx"), rs.getString("name"), rs.getString("phoneNumber"), rs.getString(""), rs.getString(""));
 			}
 			
 			
