@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>레이아웃</title>
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $('#burger').hide();
+            $('#drink').hide();
+
+
+            $('#bur').click(function () {
+                $('#bur').css("background-color", "gold").css("color", "white").css("border-radius", "10px 10px 0 0 ");
+                $('#dri').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
+                $('#burger').show();
+                $('#drink').hide();
+            });
+
+            $('#dri').click(function () {
+                $('#dri').css("background-color", "gold").css("color", "white").css("border-radius", "10px 10px 0 0 ");
+                $('#bur').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
+                $('#burger').hide();
+                $('#drink').show();
+            });
+
+            $('#k').click(function(){
+                var k = $(this).attr("src");
+                alert(k);
+
+                $('#aside>ul').append("<li><image src="+k+"></li>")
+            })
+
+            
+        });
+
+
+    </script>
+    <style>
+
+
+        #header {
+            /*                표현영역의 사이즈 설정*/
+            width: 1500px;
+            height: 140px;
+
+            /* background-color: #ff0000; */
+
+            margin: 0 auto;
+            padding-left: 30px;
+
+            /* text-align: center; */
+            line-height: 190px;
+
+            font-size: 2em;
+            /* color: aliceblue; */
+            font-weight: bold;
+        }
+
+        #nav {
+            width: 1100px;
+            height: 100px;
+
+            /* background-color: green; */
+
+            margin: 0 auto;
+
+            text-align: center;
+            /* line-height: 30px; */
+
+            font-size: 2em;
+            color: aliceblue;
+            font-weight: bold;
+
+            float: left;
+        }
+
+        #aside {
+            width: 400px;
+            height: 800px;
+
+            background-color: black;
+
+            /*                margin: 0 auto;*/
+
+            text-align: center;
+            line-height: 300px;
+
+            font-size: 2em;
+            color: aliceblue;
+            font-weight: bold;
+
+            float: right;
+        }
+
+        #content {
+            width: 1100px;
+            height: 700px;
+
+            background-color: white;
+
+            /*                margin: 0 auto;*/
+
+            line-height: 300px;
+
+            font-size: 2em;
+            color: aliceblue;
+            font-weight: bold;
+
+            float: left;
+            /* display: none; */
+        }
+
+        #wrap {
+
+            width: 1500px;
+
+            margin: 0 auto;
+
+            overflow: auto;
+        }
+
+        #footer {
+            width: 1500px;
+            height: 100px;
+
+            background-color: #ff0000;
+
+            margin: 0 auto;
+
+            text-align: center;
+            line-height: 100px;
+
+            font-size: 2em;
+            color: aliceblue;
+            font-weight: bold;
+
+            clear: both;
+        }
+
+        #nav>ul>li {
+            width: 275px;
+            height: 100px;
+            float: left;
+            list-style: none;
+            /* border: 1px solid white; */
+            line-height: 100px;
+            /* background-color: gold; */
+            display: block;
+
+        }
+
+        #nav>ul {
+            margin: 0;
+            padding: 0;
+            border-top: 1px solid gold;
+
+        }
+
+        a {
+            display: block;
+            color: gold;
+            text-decoration: none;
+            width: 270;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .menu:hover {
+            background-color: gold;
+            color: white;
+            text-decoration: underline;
+            /* border-bottom: 2px solid; */
+            border-radius: 10px 10px 0 0;
+        }
+
+        #burger {
+            width: 900;
+            height: 500;
+            /* display: none; */
+            background-color: black;
+
+        }
+
+        img {
+            width: 250px;
+            /* height: 200px; */
+
+        }
+
+        #content>ul>li {
+            /* background-color: gold; */
+            float: left;
+            list-style: none;
+        }
+
+        /* #drink > ul > li {
+            float: left;
+            list-style: none;
+        } */
+
+        #content > ul > li:hover {
+            cursor: pointer;
+            background-color: white;
+        }
+        #aside > ul > li {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header" class="border">JavaBurger</div>
+    <div id="wrap">
+        <div id="nav" class="border">
+            <ul>
+                <li><a id="bur" class="menu">Burger</a></li>
+                <li><a id="dri" class="menu">Drink</a></li>
+                <li><a class="menu">SideDish</a></li>
+                <li><a class="menu">Meal</a></li>
+            </ul>
+        </div>
+        <div id="aside" class="border">
+            <ul>
+                
+            </ul>
+        </div>
+        <div id="content" class="border">
+            <!-- <div id="burger"> -->
+            <ul id="burger">
+                <li><img id="k" src="../image/Hamberger/1955.png"></li>
+                <li><img src="../image/Hamberger/맥스파이시.png"></li>
+                <li><img src="../image/Hamberger/모짜렐라.png"></li>
+                <li><img src="../image/Hamberger/빅맥.png"></li>
+                <li><img src="../image/Hamberger/1955.png"></li>
+                <li><img src="../image/Hamberger/맥스파이시.png"></li>
+                <li><img src="../image/Hamberger/모짜렐라.png"></li>
+                <li><img src="../image/Hamberger/빅맥.png"></li>
+            </ul>
+            <!-- </div> -->
+            <!-- <div id="drink"> -->
+            <ul id="drink">
+                <li><img src="../image/Drink/딸기쉐이크.png"></li>
+                <li><img src="../image/Drink/아메리카노.png"></li>
+                <li><img src="../image/Drink/콜라.png"></li>
+                <li><img src="../image/Drink/카페라떼.png"></li>
+                <li><img src="../image/Drink/딸기쉐이크.png"></li>
+                <li><img src="../image/Drink/아메리카노.png"></li>
+                <li><img src="../image/Drink/콜라.png"></li>
+                <li><img src="../image/Drink/카페라떼.png"></li>
+            </ul>
+            <!-- </div> -->
+        </div>
+    </div>
+    <div id="footer" class="border">footer</div>
+</body>
+
+</html>
