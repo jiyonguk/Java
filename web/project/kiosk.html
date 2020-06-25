@@ -10,37 +10,114 @@
 
         $(document).ready(function () {
 
+            var item = [
+
+            ]
+
+            $('#content>ul>li>img').addClass('item');
+
             $('#burger').hide();
             $('#drink').hide();
+            $('#sideDish').hide();
+            $('#meal').hide();
 
 
             $('#bur').click(function () {
-                $('#bur').css("background-color", "gold").css("color", "white").css("border-radius", "10px 10px 0 0 ");
-                $('#dri').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
+                // var html = '';
+                // html += '<ul id="burger">';
+                // html += '   <li><img src="../image/Hamberger/1955.png"></li>';
+                // html += '   <li><img src="../image/Hamberger/맥스파이시.png"></li>';
+                // html += '   <li><img src="../image/Hamberger/모짜렐라.png"></li>';
+                // html += '   <li><img src="../image/Hamberger/빅맥.png"></li>';
+                // html += '   <li><img src="../image/Hamberger/1955.png"></li>';
+                // html += '   <li><img src="../image/Hamberger/맥스파이시.png"></li>';
+                // html += '   <li><img src="../image/Hamberger/모짜렐라.png"></li>';
+                // html += '   <li><img src="../image/Hamberger/빅맥.png"></li>';
+                // html += '</ul>';
+                // $('#content').html(html);
+                // $('#bur').css("background-color", "gold").css("color", "white").css("border-radius", "10px 10px 0 0 ");
+                // $('#dri').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
                 $('#burger').show();
                 $('#drink').hide();
+                $('#sideDish').hide();
+                $('#meal').hide();
+                $('#bur').addClass('select');
+                $('#dri').removeClass('select');
+                $('#side').removeClass('select');
+                $('#set').removeClass('select');
+
+
+
             });
 
             $('#dri').click(function () {
-                $('#dri').css("background-color", "gold").css("color", "white").css("border-radius", "10px 10px 0 0 ");
-                $('#bur').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
+                // $('#dri').css("background-color", "gold").css("color", "white").css("border-radius", "10px 10px 0 0 ");
+                // $('#bur').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
+                // $('#dri').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
                 $('#burger').hide();
                 $('#drink').show();
+                $('#sideDish').hide();
+                $('#meal').hide();
+                $('#dri').addClass('select');
+                $('#bur').removeClass('select');
+                $('#side').removeClass('select');
+                $('#set').removeClass('select');
             });
 
-            $('#k').click(function(){
-                var k = $(this).attr("src");
-                alert(k);
+            $('#side').click(function () {
+                // $('#dri').css("background-color", "gold").css("color", "white").css("border-radius", "10px 10px 0 0 ");
+                // $('#bur').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
+                // $('#dri').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
+                $('#burger').hide();
+                $('#drink').hide();
+                $('#sideDish').show();
+                $('#meal').hide();
+                $('#side').addClass('select');
+                $('#bur').removeClass('select');
+                $('#dri').removeClass('select');
+                $('#set').removeClass('select');
+            });
 
-                $('#aside>ul').append("<li><image src="+k+"></li>")
+            $('#set').click(function () {
+                // $('#dri').css("background-color", "gold").css("color", "white").css("border-radius", "10px 10px 0 0 ");
+                // $('#bur').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
+                // $('#dri').css("background-color", "white").css("color", "gold").css("border-radius", "10px 10px 0 0 ");
+                $('#burger').hide();
+                $('#drink').hide();
+                $('#sideDish').hide();
+                $('#meal').show();
+                $('#set').addClass('select');
+                $('#bur').removeClass('select');
+                $('#dri').removeClass('select');
+                $('#side').removeClass('select');
+            });
+
+            $('#content > ul > li > img').click(function () {
+                var item = $(this).attr("src");
+                // alert('추가');
+
+                $('div.orderList>ul').append('<li><image src=' + item + ' class="list"></li>')
             })
 
-            
+
+
+
+
+
         });
 
 
     </script>
     <style>
+        .select {
+            background-color: gold;
+            color: white;
+            border-radius: 50px;
+        }
+
+        img.list {
+            width: 50px;
+        }
 
 
         #header {
@@ -59,6 +136,7 @@
             font-size: 2em;
             /* color: aliceblue; */
             font-weight: bold;
+
         }
 
         #nav {
@@ -77,6 +155,7 @@
             font-weight: bold;
 
             float: left;
+
         }
 
         #aside {
@@ -84,18 +163,23 @@
             height: 800px;
 
             background-color: black;
-
-            /*                margin: 0 auto;*/
-
-            text-align: center;
-            line-height: 300px;
+            /* line-height: 300px; */
 
             font-size: 2em;
             color: aliceblue;
             font-weight: bold;
+            /* text-align: center; */
 
             float: right;
+            overflow: auto;
+
         }
+
+        #aside>div.asideTitle {
+            text-align: center;
+        }
+
+
 
         #content {
             width: 1100px;
@@ -113,6 +197,9 @@
 
             float: left;
             /* display: none; */
+
+            overflow: auto;
+
         }
 
         #wrap {
@@ -122,13 +209,14 @@
             margin: 0 auto;
 
             overflow: auto;
+
         }
 
         #footer {
             width: 1500px;
             height: 100px;
 
-            background-color: #ff0000;
+            border: 1px solid gold;
 
             margin: 0 auto;
 
@@ -152,12 +240,14 @@
             /* background-color: gold; */
             display: block;
 
+
         }
 
         #nav>ul {
             margin: 0;
             padding: 0;
-            border-top: 1px solid gold;
+            /* border-top: 1px solid gold; */
+
 
         }
 
@@ -168,6 +258,7 @@
             width: 270;
             background-color: white;
             cursor: pointer;
+
         }
 
         .menu:hover {
@@ -175,7 +266,8 @@
             color: white;
             text-decoration: underline;
             /* border-bottom: 2px solid; */
-            border-radius: 10px 10px 0 0;
+            border-radius: 50px;
+
         }
 
         #burger {
@@ -184,11 +276,14 @@
             /* display: none; */
             background-color: black;
 
+
         }
 
-        img {
+        img.item {
             width: 250px;
+            height: 140px;
             /* height: 200px; */
+
 
         }
 
@@ -196,6 +291,7 @@
             /* background-color: gold; */
             float: left;
             list-style: none;
+
         }
 
         /* #drink > ul > li {
@@ -203,12 +299,17 @@
             list-style: none;
         } */
 
-        #content > ul > li:hover {
+        #content>ul>li:hover {
             cursor: pointer;
-            background-color: white;
+            background-color: gold;
+            border-radius: 50px;
         }
-        #aside > ul > li {
+
+        #aside>div>ul>li {
             margin: 0;
+            padding: 0;
+            list-style: none;
+
         }
     </style>
 </head>
@@ -220,40 +321,25 @@
             <ul>
                 <li><a id="bur" class="menu">Burger</a></li>
                 <li><a id="dri" class="menu">Drink</a></li>
-                <li><a class="menu">SideDish</a></li>
-                <li><a class="menu">Meal</a></li>
+                <li><a id="side" class="menu">SideDish</a></li>
+                <li><a id="set" class="menu">Meal</a></li>
             </ul>
         </div>
         <div id="aside" class="border">
-            <ul>
-                
-            </ul>
+            <div class="asideTitle">
+                주문내역
+            </div>
+            <div class="orderList">
+                <ul>
+
+                </ul>
+            </div>
         </div>
         <div id="content" class="border">
-            <!-- <div id="burger"> -->
-            <ul id="burger">
-                <li><img id="k" src="../image/Hamberger/1955.png"></li>
-                <li><img src="../image/Hamberger/맥스파이시.png"></li>
-                <li><img src="../image/Hamberger/모짜렐라.png"></li>
-                <li><img src="../image/Hamberger/빅맥.png"></li>
-                <li><img src="../image/Hamberger/1955.png"></li>
-                <li><img src="../image/Hamberger/맥스파이시.png"></li>
-                <li><img src="../image/Hamberger/모짜렐라.png"></li>
-                <li><img src="../image/Hamberger/빅맥.png"></li>
-            </ul>
-            <!-- </div> -->
-            <!-- <div id="drink"> -->
-            <ul id="drink">
-                <li><img src="../image/Drink/딸기쉐이크.png"></li>
-                <li><img src="../image/Drink/아메리카노.png"></li>
-                <li><img src="../image/Drink/콜라.png"></li>
-                <li><img src="../image/Drink/카페라떼.png"></li>
-                <li><img src="../image/Drink/딸기쉐이크.png"></li>
-                <li><img src="../image/Drink/아메리카노.png"></li>
-                <li><img src="../image/Drink/콜라.png"></li>
-                <li><img src="../image/Drink/카페라떼.png"></li>
-            </ul>
-            <!-- </div> -->
+            <div id="item">
+
+            </div>
+
         </div>
     </div>
     <div id="footer" class="border">footer</div>
