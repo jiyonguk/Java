@@ -11,8 +11,10 @@
 	<h1>안녕하세요. pagecontrol 페이지입니다.</h1>
 
 	<%
-		response.sendRedirect("../main.jsp");
+		response.sendRedirect("../hello.jsp");
 	%>
+	
+	<%-- <jsp:forward page="../hello.jsp"/> --%>
 
 </body>
 </html>
