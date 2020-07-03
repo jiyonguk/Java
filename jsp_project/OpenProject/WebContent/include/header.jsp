@@ -2,7 +2,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	Boolean loginCheck = session.getAttribute("memberId")==null?true:false; 
+	/* Boolean loginCheck = session.getAttribute("memberId")==null?true:false; */ 
+	
+	String id = (String) session.getAttribute("memberId");
+	
+	Boolean loginCheck = false;
+	
+	if(id == null){
+		loginCheck = true;
+	}
 	
 %>
 <h1 id="header">

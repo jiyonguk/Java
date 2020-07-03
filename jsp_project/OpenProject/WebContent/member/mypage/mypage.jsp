@@ -24,6 +24,6 @@
 <body>
 <%@ include file="/include/header.jsp" %>
 	<h1>마이페이지</h1>
-	<%@ include file="/include/footer.jsp" %>
+<%@ include file="/include/footer.jsp" %>
 </body>
 </html>
