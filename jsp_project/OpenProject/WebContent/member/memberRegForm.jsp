@@ -22,7 +22,7 @@
 	
 	<h2>회원정보 입력</h2>
 
-	<form action="memberReg.jsp" method="post">
+	<form action="mypage/mypage.jsp" method="post">
 		<table>
 			<tr>
 				<td>아이디</td>

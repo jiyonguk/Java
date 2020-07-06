@@ -1,6 +1,8 @@
   
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="requestInfo" class="model.RequestMemberInfo" scope="page"/>
+<jsp:setProperty property="*" name="requestInfo"/>    
 <%
 	String mId = (String)session.getAttribute("memberId");
 
@@ -24,6 +26,13 @@
 <body>
 <%@ include file="/include/header.jsp" %>
 	<h1>마이페이지</h1>
+	<hr>
+	<ul>
+		<li>id :<%=requestInfo.getId() %> <%--=request.getParameter("id")--%></li>
+		<li>pw :<%=requestInfo.getPw() %> <%--=request.getParameter("pw")--%></li>
+		<li>name :<%=requestInfo.getUname() %> <%--=request.getParameter("uname")--%></li>
+		<li>photo :<%--=request.getParameter("uphoto")--%></li>
+	</ul>
 <%@ include file="/include/footer.jsp" %>
 </body>
 </html>
