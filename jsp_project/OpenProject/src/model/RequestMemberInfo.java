@@ -7,6 +7,13 @@ public class RequestMemberInfo {
 
 	
 	
+	public RequestMemberInfo(String id, String pw, String uname) {
+		this.id = id;
+		this.pw = pw;
+		this.uname = uname;
+	}
+
+
 	public RequestMemberInfo() {
 	}
 
