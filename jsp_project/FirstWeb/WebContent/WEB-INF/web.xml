@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>FirstWeb</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -30,8 +32,9 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.or
   	<url-pattern>/hello</url-pattern>
   </servlet-mapping>
   
-  <!-- 데이터베이스 드라이버 로드 -->
-  <servlet>
+  
+  <!-- 데이터베이스 드라이버 로드  -->
+<!--   <servlet>
   	<servlet-name>Loader</servlet-name>
   	<servlet-class>jdbc.Loader</servlet-class>
   	<init-param>
@@ -40,10 +43,21 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.or
   	</init-param>
   	<init-param>
   		<param-name>msg</param-name>
-  		<param-value>Hello JSP!</param-value>
+  		<param-value>Hello~ JSP~~</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>
+  </servlet> -->
+  
+  <!-- 컨텍션 풀 드라이버 등록 -->
+  <servlet>
+  	<servlet-name>DBCPInit</servlet-name>
+  	<servlet-class>jdbc.DBCPInit</servlet-class>
+  	<load-on-startup>1</load-on-startup>
   </servlet>
+  
+  
+  
+  
   
   
   <!-- 상태 코드의 에러 페이지 설정 -->
@@ -52,11 +66,13 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.or
   	<location>/error/error_404.jsp</location>
   </error-page>
   
-    <error-page>
+  <error-page>
   	<error-code>500</error-code>
   	<location>/error/error_500.jsp</location>
   </error-page>
-  <!-- 타입이 우선 -->
+  
+  
+  <!-- 에러 타입별 에러페이지 설정 -->
   <error-page>
   	<exception-type>java.lang.NullPointerException</exception-type>
   	<location>/error/error_null.jsp</location>
@@ -79,3 +95,4 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.or
   
   
 </web-app>
+
