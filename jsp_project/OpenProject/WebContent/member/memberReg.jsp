@@ -29,6 +29,5 @@
 <%
 	List<RequestMemberInfo> info = new ArrayList();
 	
-	info.add(new RequestMemberInfo) )
 
 %>

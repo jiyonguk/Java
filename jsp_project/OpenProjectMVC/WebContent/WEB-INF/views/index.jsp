@@ -13,14 +13,14 @@
 </head>
 <body>
 
-	<%@ include file="/include/header.jsp" %>
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 	<div>
-		<%= request.getContextPath() %>
+	<%= request.getContextPath() %>
 		index
 	</div>
 
-	<%@ include file="/include/footer.jsp" %>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 </html>
 

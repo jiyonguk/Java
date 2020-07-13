@@ -98,9 +98,10 @@ public class ReportRegService {
 						File saveFile = new File(realPath, newFileName);
 						System.out.println("saveFile : "+saveFile);
 						item.write(saveFile);
-						System.out.println("저장완료");
-						
+						System.out.println("저장완료!!!!!!!!!!!!!!!!!");
+												
 						filePath = uri+"/"+newFileName;
+						System.out.println("filePath"+filePath);
 					}
 				}
 				
