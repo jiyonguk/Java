@@ -88,16 +88,18 @@ public class BoardEditServiceImpl implements Service {
 		
 							// 시스템의 실제(절대) 경로
 							String realPath = request.getSession().getServletContext().getRealPath(uri);
-							// System.out.println(realPath);
+							System.out.println(realPath);
 		
 							String newFileName = System.nanoTime() + "_" + item.getName();
 		
 							// 서버의 저장소에 실제 저장
 							File saveFile = new File(realPath, newFileName);
+							System.out.println("saveFile"+saveFile);
 							item.write(saveFile);
 							System.out.println("저장 완료");
 							
 							bphoto = uri+"/"+newFileName;
+							System.out.println("bphoto"+bphoto);
 						}
 						
 						
@@ -110,7 +112,10 @@ public class BoardEditServiceImpl implements Service {
 				// 이전 파일 삭제.
 				// 새로운 파일이 없을 때 이전 파일 이름 저장
 				if(bphoto!=null) {
+					System.out.println("oFile"+request.getSession().getServletContext().getRealPath(oldFile));
 					File oFile = new File(request.getSession().getServletContext().getRealPath(oldFile));
+					System.out.println("oldFile"+oldFile);
+					
 					if(oFile.exists()) {
 						if(oFile.delete()) {
 							System.out.println("새로운 파일이 추가되어 이전파일은 삭제합니다.");
@@ -118,6 +123,7 @@ public class BoardEditServiceImpl implements Service {
 					}
 				} else {
 					bphoto = oldFile;
+					System.out.println("bphoto"+bphoto);
 				}
 				
 				
@@ -135,7 +141,7 @@ public class BoardEditServiceImpl implements Service {
 				dao = BoardDao.getInstance() ;
 				
 				resultCnt = dao.boardEdit(conn, board);
-				
+				System.out.println("결과값나옴?"+resultCnt);
 				request.setAttribute("board", board);
 				request.setAttribute("result", resultCnt);
 				
