@@ -115,7 +115,10 @@ public class BoardDao {
 			pstmt.setInt(4, board.getBidx());
 			
 			result = pstmt.executeUpdate();
-			System.out.println("수정됬음");
+			if(result > 0) {
+				System.out.println("수정됬음");
+			}
+
 		} finally {
 			if(pstmt != null) {
 				pstmt.close();

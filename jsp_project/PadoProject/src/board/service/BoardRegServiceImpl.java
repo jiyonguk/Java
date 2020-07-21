@@ -128,7 +128,7 @@ public class BoardRegServiceImpl implements Service {
 				}
 			}
 		}
-		return "/WEB-INF/board/boardReg.jsp";
+		return "/WEB-INF/views/board/boardReg.jsp";
 	}
 
 }

@@ -65,7 +65,7 @@ public class BoardEditServiceImpl implements Service {
 						String paramValue = item.getString("utf-8");
 						//System.out.println(paramName + " = " + paramValue);
 						
-						if(paramName.equals("idx")){
+						if(paramName.equals("bidx")){
 							idx = Integer.parseInt(paramValue);
 						} else if(paramName.equals("bmessage")) {
 							bmessage = paramValue;
@@ -74,6 +74,7 @@ public class BoardEditServiceImpl implements Service {
 						} else if(paramName.equals("oldFile")) {
 							// 이전 파일은 새로운 파일이 없을때 업데이트가 되도록합니다.
 							oldFile = paramValue;
+							System.out.println("oldFile????"+oldFile);
 						}
 						
 					} else { // type=file
@@ -88,7 +89,7 @@ public class BoardEditServiceImpl implements Service {
 		
 							// 시스템의 실제(절대) 경로
 							String realPath = request.getSession().getServletContext().getRealPath(uri);
-							System.out.println(realPath);
+							System.out.println("realPath"+realPath);
 		
 							String newFileName = System.nanoTime() + "_" + item.getName();
 		
@@ -131,6 +132,7 @@ public class BoardEditServiceImpl implements Service {
 				
 				// 데이터 베이스 저장 
 				Board board = new Board();
+				System.out.println("idx : "+idx);
 				board.setBidx(idx);
 				board.setBaddr(baddr);
 				board.setBmessage(bmessage);
@@ -173,7 +175,7 @@ public class BoardEditServiceImpl implements Service {
 			
 		}
 		
-		return "/WEB-INF/board/boardEdit.jsp";
+		return "/WEB-INF/views/board/boardEdit.jsp";
 	}
 
 }

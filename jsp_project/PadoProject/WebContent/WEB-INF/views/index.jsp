@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:url value="/board/boardList.do"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +12,6 @@
 </style>
 </head>
 <body>
-${msg}
+<a href="<c:url value="/board/boardList.do"/>">리스트보기</a>
 </body>
 </html>

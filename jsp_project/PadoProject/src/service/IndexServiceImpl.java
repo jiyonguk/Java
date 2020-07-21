@@ -8,7 +8,7 @@ public class IndexServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		
-		String viewPage = "/WEB-INF/index.jsp";
+		String viewPage = "/WEB-INF/views/index.jsp";
 		return viewPage;
 	}
 

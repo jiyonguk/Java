@@ -13,10 +13,13 @@
 		<form action="boardEdit.do" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
-					<td><input type="hidden" name="${board.bidx}"></td>
-					<td><input type="text" name="${board.bid}"value="${board.bid}" readonly></td>
+					<td><input type="hidden" name="bidx" value="${board.bidx}"></td>
+					<td><input type="text" name="bid" value="${board.bid}" readonly></td>
 					<td><textarea rows="10" cols="50" name="bmessage" id="bmessage">${board.bmessage}</textarea></td>
-					<td><input type="file" name="oldfile" id="oldfile"></td>
+					<td>
+						<input type="file" name="file" id="file">${board.bphoto}
+						<input type="hidden" name="oldFile" value="${board.bphoto}">
+					</td>
 				</tr>
 				<tr>
 					<td></td>

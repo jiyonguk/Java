@@ -10,7 +10,7 @@ public class BoardRegFormServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		
-		return "/WEB-INF/board/boardRegForm.jsp";
+		return "/WEB-INF/views/board/boardRegForm.jsp";
 	}
 
 }

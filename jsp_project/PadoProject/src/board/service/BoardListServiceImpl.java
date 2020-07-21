@@ -50,7 +50,7 @@ public class BoardListServiceImpl implements Service {
 		}
 
 
-		return "/WEB-INF/board/boardList.jsp";
+		return "/WEB-INF/views/board/boardList.jsp";
 
 	}
 }

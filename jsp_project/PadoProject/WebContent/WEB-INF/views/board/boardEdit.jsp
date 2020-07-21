@@ -10,6 +10,6 @@
 </style>
 </head>
 <body>
-<a href="boardList.do">리스트보기</a>
+${result}
 </body>
 </html>

@@ -58,7 +58,7 @@ public class BoardDeleteServiceImpl implements Service {
 		
 		
 		
-		return "/WEB-INF/board/boardDelete.jsp";
+		return "/WEB-INF/views/board/boardDelete.jsp";
 	}
 
 }

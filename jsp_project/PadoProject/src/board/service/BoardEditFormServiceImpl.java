@@ -38,7 +38,7 @@ public class BoardEditFormServiceImpl implements Service {
 		
 		request.setAttribute("board", board);
 		
-		return "/WEB-INF/board/boardEditForm.jsp";
+		return "/WEB-INF/views/board/boardEditForm.jsp";
 	}
 
 }
