@@ -58,7 +58,7 @@ public class BoardRegServiceImpl implements Service {
 						String paramValue = item.getString("utf-8");
 						System.out.println(paramName + "=" + paramValue);
 
-						if (paramName.equals("bid")) {
+						if (paramName.equals("mid")) {
 							bid = paramValue;
 						} else if (paramName.equals("bmessage")) {
 							bmessage = paramValue;

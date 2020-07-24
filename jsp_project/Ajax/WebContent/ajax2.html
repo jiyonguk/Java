@@ -14,10 +14,10 @@
 
 	$(document).ready(function(){
 		
-			$.ajax({ajax1.html
-				url:'data.html',
-				success: function(url){
-					$('body').append(url);
+			$.ajax({
+				url: 'data.html',
+				success: function(data){
+					$('body').html(data);
 				}
 			});	
 	})

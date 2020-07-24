@@ -79,7 +79,7 @@ public class BoardEditServiceImpl implements Service {
 						
 					} else { // type=file
 						
-						if(item.getFieldName().equals("oldFile") && item.getSize()>0) {
+						if(item.getFieldName().equals("file") && item.getSize()>0) {
 
 							System.out.println("파일 없이 들어오면 안된다");
 							// 서버 내부의 경로

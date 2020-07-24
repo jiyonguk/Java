@@ -9,7 +9,7 @@ public class NullServiceImpl implements Service {
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		
 		// viewPage
-		String viewPage = "/WEB-INF/board/null.jsp";		
+		String viewPage = "/WEB-INF/views/null.jsp";		
 		return viewPage;
 	}
 

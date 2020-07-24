@@ -28,7 +28,7 @@ public class BoardDao {
 		try {
 			String sql = "INSERT INTO project.board(bid,bphoto,bmessage,baddr)VALUES(?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "131313");
+			pstmt.setString(1, board.getBid());
 			pstmt.setString(2, board.getBphoto());
 			pstmt.setString(3, board.getBmessage());
 			pstmt.setString(4, board.getBaddr());
@@ -62,7 +62,6 @@ public class BoardDao {
 										rs.getString("bmessage"),
 										rs.getString("baddr"),
 										rs.getDate("regdate"));
-				
 				list.add(board);
 			}
 			

@@ -33,6 +33,7 @@ public class BoardListServiceImpl implements Service {
 			System.out.println(boardList);
 
 			request.setAttribute("boardList", boardList);
+			//request.setAttribute("commnet", comment);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -10,6 +10,9 @@
 </style>
 </head>
 <body>
-${result}
+<script>
+	alert('수정되었습니다');
+	location.href='boardList.do';
+</script>
 </body>
 </html>

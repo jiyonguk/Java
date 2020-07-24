@@ -25,7 +25,7 @@ public class BoardEditFormServiceImpl implements Service {
 			conn = ConnectionProvider.getConnection();
 			dao = BoardDao.getInstance();
 			
-			int idx = Integer.parseInt(request.getParameter("idx"));
+			int idx = Integer.parseInt(request.getParameter("bidx"));
 			board = dao.selectByIdx(conn, idx);
 			
 			
