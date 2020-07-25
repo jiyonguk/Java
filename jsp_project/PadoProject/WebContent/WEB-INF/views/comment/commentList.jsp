@@ -12,10 +12,15 @@
 </head>
 <body>
 
-	<div id="comment">
-		<span>댓글아이디</span>
-		<span>댓글내용</span>
-		
-	</div>
+<c:forEach var="comment" items="${Comment}">
+${comment.key } 
+
+ ${comment.value }
+
+</c:forEach>
+
+
+
+
 </body>
 </html>

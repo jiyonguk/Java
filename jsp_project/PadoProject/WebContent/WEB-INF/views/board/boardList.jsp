@@ -113,7 +113,7 @@
 			<div id="comment">
 				<input type="hidden" name="bidx" value="${board.bidx}">
 				<input type="hidden" name="mid" value="세션들어가야함">
-				<input type="text" id="commentText" value="Add a comment..." name="cmessage"> 
+				<input type="text" id="commentText" name="cmessage" placeholder="Add a comment..."> 
 				<input type="submit" id="postButton" value="post">
 			
 			</div>
