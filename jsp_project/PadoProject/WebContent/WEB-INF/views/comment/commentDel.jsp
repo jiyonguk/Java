@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,15 +11,10 @@
 </head>
 <body>
 
-<c:forEach var="comment" items="${Comment}">
-${comment.key } 
-
- ${comment.value }
-
-</c:forEach>
-
-
-
-
 </body>
 </html>
+<script>
+
+history.go(-1);
+
+</script>

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Comment {
 	private int cidx;
-	private String bid;
+	private String mid;
 	private int bidx;
 	private String cmessage;
 	private Date regdate;
@@ -14,11 +14,11 @@ public class Comment {
 	public void setCidx(int cidx) {
 		this.cidx = cidx;
 	}
-	public String getBid() {
-		return bid;
+	public String getMid() {
+		return mid;
 	}
-	public void setBid(String bid) {
-		this.bid = bid;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 	public int getBidx() {
 		return bidx;
@@ -40,13 +40,13 @@ public class Comment {
 	}
 	@Override
 	public String toString() {
-		return "Comment [cidx=" + cidx + ", bid=" + bid + ", bidx=" + bidx + ", cmessage=" + cmessage + ", regdate="
+		return "Comment [cidx=" + cidx + ", mid=" + mid + ", bidx=" + bidx + ", cmessage=" + cmessage + ", regdate="
 				+ regdate + "]";
 	}
 	
-	public Comment(int cidx, String bid, int bidx, String cmessage, Date regdate) {
+	public Comment(int cidx, String mid, int bidx, String cmessage, Date regdate) {
 		this.cidx = cidx;
-		this.bid = bid;
+		this.mid = mid;
 		this.bidx = bidx;
 		this.cmessage = cmessage;
 		this.regdate = regdate;

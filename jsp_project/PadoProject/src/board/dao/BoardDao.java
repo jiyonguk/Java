@@ -26,7 +26,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO project.board(bid,bphoto,bmessage,baddr)VALUES(?,?,?,?)";
+			String sql = "INSERT INTO project.board(mid,bphoto,bmessage,baddr)VALUES(?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getBid());
 			pstmt.setString(2, board.getBphoto());
@@ -57,11 +57,11 @@ public class BoardDao {
 			
 			while(rs.next()) {
 				Board board = new Board(rs.getInt("bidx"),
-										rs.getString("bid"),
+										rs.getString("mid"),
 										rs.getString("bphoto"),
 										rs.getString("bmessage"),
 										rs.getString("baddr"),
-										rs.getDate("regdate"));
+										rs.getDate("bregdate"));
 				list.add(board);
 			}
 			
@@ -143,7 +143,7 @@ public class BoardDao {
 			if(rs.next()) {
 				board = new Board();
 				board.setBidx(rs.getInt("bidx"));
-				board.setBid(rs.getString("bid"));
+				board.setBid(rs.getString("mid"));
 				board.setBphoto(rs.getString("bphoto"));
 				board.setBmessage(rs.getString("bmessage"));
 				board.setBaddr(rs.getString("baddr"));

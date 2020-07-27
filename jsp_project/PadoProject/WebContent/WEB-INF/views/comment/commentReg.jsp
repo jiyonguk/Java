@@ -19,7 +19,13 @@
 </script>
 
 </c:if>
-
+<c:if test="${resultCnt == 0}">
+	<script>
+	alert('댓글작성실패');
+	history.go(-1);
+	
+</script>
+</c:if>
 
 
 </body>

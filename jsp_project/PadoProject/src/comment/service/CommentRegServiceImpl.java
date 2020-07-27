@@ -1,5 +1,6 @@
 package comment.service;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -14,48 +15,53 @@ import service.Service;
 
 public class CommentRegServiceImpl implements Service {
 
-	CommentDao dao;
+	
+
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
-
 		int resultCnt = 0;
-		int bidx =  Integer.parseInt(request.getParameter("bidx"));
-		String bid = request.getParameter("mid");
-		String cmessage= request.getParameter("cmessage");
-		System.out.println("cmessage"+cmessage);
-		
+		CommentDao dao = null;
 		Connection conn = null;
-		
+
 		try {
+			
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;utf-8");
+
+			int bidx = Integer.parseInt(request.getParameter("bidx"));
+			String mid = request.getParameter("mid");
+			String cmessage = request.getParameter("cmessage");
 			Comment comment = new Comment();
 			comment.setBidx(bidx);
-			comment.setBid(bid);
+			comment.setMid(mid);
 			comment.setCmessage(cmessage);
-			
+
 			conn = ConnectionProvider.getConnection();
-			
+
 			dao = dao.getInstance();
-			
-			
+
 			resultCnt = dao.insertComment(conn, comment);
-			
-			request.setAttribute("resultCnt", resultCnt);	
-			System.out.println("댓글 입력 성공 1=="+resultCnt);
-			
+
+			request.setAttribute("resultCnt", resultCnt);
+			System.out.println("댓글 입력 성공 1==" + resultCnt);
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
-			if(conn != null) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
-		
+
 		return "/WEB-INF/views/comment/commentReg.jsp";
 	}
 

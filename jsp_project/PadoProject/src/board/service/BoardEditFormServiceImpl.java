@@ -18,7 +18,7 @@ public class BoardEditFormServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		
-		Connection conn;
+		Connection conn = null;
 		Board board = null;
 		
 		try {
@@ -34,6 +34,15 @@ public class BoardEditFormServiceImpl implements Service {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		request.setAttribute("board", board);

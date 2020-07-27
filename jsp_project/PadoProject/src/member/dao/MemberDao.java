@@ -307,7 +307,7 @@ public class MemberDao {
 
 		         pstmt = conn.prepareStatement(sql);
 		         pstmt.setString(1, id);
-
+		         System.out.println(id);
 		         rs = pstmt.executeQuery();
 		         if (rs.next()) {
 		            if (rs.getString("mpw").equals(pw)) {
