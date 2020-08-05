@@ -14,6 +14,12 @@
 		width :50px;
 		height : 50px;
 	}
+	
+	div.searchBox {
+		border : 1px solid #ddd;
+		padding : 20px;
+		width : 70%;
+	}
 </style>
 </head>
 <body>
@@ -27,6 +33,18 @@
 
 		<div>전체회원 ${listView.memberTotalCount} 명</div>
 		<hr>
+		
+		<div class="searchBox">
+		<form>
+		<select name="searchType">
+			<option name="id">ID</option>
+			<option name="name">NAME</option>
+			<option name="both">ID+NAME</option>
+		</select>
+		<input type="text" name="keyword">
+		<input type="submit" value="검색">
+		</form>
+		</div>
 
 		<table class="table">
 			<tr>
