@@ -41,10 +41,12 @@ public class MemberListService {
 		
 		// 검색 데이터 : 검색 타입, 키워드
 		String searchType = request.getParameter("searchType");
+		String keyword = request.getParameter("keyword");
+		
 		if (searchType != null && !searchType.isEmpty()) {
 			search.put("searchType", searchType);
 		}
-		String keyword = request.getParameter("keyword");
+		
 		if (keyword != null && !keyword.isEmpty()) {
 			search.put("keyword", keyword);
 		}
@@ -83,8 +85,8 @@ public class MemberListService {
 
 			System.out.println(startRow);
 			
-			search.put("startRow", startRow+"");
-			search.put("count", MEMBER_CNT_PER_PAGE+"");
+			search.put("startRow", startRow);
+			search.put("count", MEMBER_CNT_PER_PAGE);
 
 			memberList = dao.selectList(search);
 		} else {
