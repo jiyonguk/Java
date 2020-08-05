@@ -37,18 +37,20 @@ public class MemberListService {
 
 		dao = template.getMapper(MemberDaoInterface.class);
 		
+		Map<String, Object> search = new HashMap<String, Object>();
+		
 		// 검색 데이터 : 검색 타입, 키워드
 		String searchType = request.getParameter("searchType");
-		if (searchType.isEmpty()) {
-			searchType = null;
+		if (searchType != null && !searchType.isEmpty()) {
+			search.put("searchType", searchType);
 		}
 		String keyword = request.getParameter("keyword");
-		if (keyword.isEmpty()) {
-			keyword = null;
+		if (keyword != null && !keyword.isEmpty()) {
+			search.put("keyword", keyword);
 		}
-		Map<String, String> search = new HashMap<String, String>();
-		search.put("searchType", searchType);
-		search.put("keyword", keyword);
+		
+		
+		
 
 		// view 로 전달할 결과 데이터
 		MemberListView listView = null;
@@ -82,7 +84,7 @@ public class MemberListService {
 			System.out.println(startRow);
 			
 			search.put("startRow", startRow+"");
-			search.put("count",MEMBER_CNT_PER_PAGE+"");
+			search.put("count", MEMBER_CNT_PER_PAGE+"");
 
 			memberList = dao.selectList(search);
 		} else {

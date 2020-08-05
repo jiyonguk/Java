@@ -37,9 +37,9 @@
 		<div class="searchBox">
 		<form>
 		<select name="searchType">
-			<option name="id">ID</option>
-			<option name="name">NAME</option>
-			<option name="both">ID+NAME</option>
+			<option value="id">ID</option>
+			<option value="name">NAME</option>
+			<option value="both">ID+NAME</option>
 		</select>
 		<input type="text" name="keyword">
 		<input type="submit" value="검색">
@@ -85,7 +85,7 @@
 		<div class="paging">
 			<c:forEach begin="1" end="${listView.pageTotalCount}" var="i">
 			
-			<a class="paging_num ${i == listView.currentPageNumber ? 'now_page' : ''}" href="memberList?page=${i}" >${i}</a>
+			<a class="paging_num ${i == listView.currentPageNumber ? 'now_page' : ''}" href="memberList?page=${i}&searchType=${param.searchType}&keyword=${param.keyword}" >${i}</a>
 			
 			</c:forEach>
 		</div>
