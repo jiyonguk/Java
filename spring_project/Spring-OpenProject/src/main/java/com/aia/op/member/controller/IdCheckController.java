@@ -1,3 +1,4 @@
+
 package com.aia.op.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class IdCheckController {
 			@RequestParam("uid") String uid
 			) {
 		
-		return idCheckService.checkId(uid);
+		return idCheckService.checkId(uid); // "Y" "N"
 	}
 
 }

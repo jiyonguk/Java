@@ -1,26 +1,39 @@
-package com.aia.op.member.service;
+package com.aia.mm.service;
 
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.aia.op.member.dao.MemberDaoInterface;
-import com.aia.op.member.model.Member;
 import org.springframework.stereotype.Service;
 
+import com.aia.mm.dao.MemberDao;
+import com.aia.mm.model.Member;
+
 @Service
-public class MemberListJsonService {
-	
-	private MemberDaoInterface dao;
+public class MemberListService {
+
+	private MemberDao dao;
 	
 	@Autowired
 	private SqlSessionTemplate template;
 	
 	public List<Member> getMemberList(){
 		
-		dao = template.getMapper(MemberDaoInterface.class);
+		dao = template.getMapper(MemberDao.class);
 		
-		return dao.selectTotalList();
+		return dao.selectList();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
