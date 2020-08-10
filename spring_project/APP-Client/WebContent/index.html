@@ -56,6 +56,12 @@
 		
 	});
 	
+	function deleteReg(){
+		
+		
+		
+	}
+	
 	function editSubmit(){
 
 		var regFormData = new FormData();
@@ -155,7 +161,7 @@
 					html += '		<li>uName : '+data[i].uname+'</li>';
 					html += '		<li>uPhoto :'+data[i].uphoto+'</li>';
 					html += '		<li><input type="button" value="수정" onclick="editForm('+data[i].idx+')"> ';
-					html += '		<input type="button" value="삭제"></li>';
+					html += '		<input type="button" value="삭제" onclick="deleteReg('+data[i].idx+')"></li>';
 					html += '	</ul>';
 					html += '</div>';
 				}
