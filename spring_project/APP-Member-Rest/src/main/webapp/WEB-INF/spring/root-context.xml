@@ -5,12 +5,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
-		p:driverClassName="com.mysql.cj.jdbc.Driver"
-		p:jdbcUrl="jdbc:mysql://localhost:3306/project?serverTimezone=UTC"
-		p:username="bit" p:password="bit"/>
-
-
+	<bean id="dataSource"
+			class="com.zaxxer.hikari.HikariDataSource"
+			p:driverClassName="com.mysql.cj.jdbc.Driver"
+			p:jdbcUrl="jdbc:mysql://localhost:3306/project?serverTimezone=UTC"
+			p:username="bit"
+			p:password="bit"
+	/>	
 	
 	<!--  
 		sqlSessionFactory 생성

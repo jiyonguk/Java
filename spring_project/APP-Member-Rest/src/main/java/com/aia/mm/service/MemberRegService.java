@@ -1,4 +1,4 @@
-package com.aia.mm.controller;
+package com.aia.mm.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,8 +78,3 @@ public class MemberRegService {
 	}
 
 }
-
-
-
-
-
