@@ -38,7 +38,7 @@ public class MemberRegService {
 			HttpServletRequest request
 			) {
 		
-		dao= sessionTemplate.getMapper(MemberDaoInterface.class);
+		dao = sessionTemplate.getMapper(MemberDaoInterface.class);
 		
 		int result = 0;
 		

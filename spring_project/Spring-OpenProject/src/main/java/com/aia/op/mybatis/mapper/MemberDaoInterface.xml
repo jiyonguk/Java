@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		select count(*) from project.member
 
-		<include refid="lsitSearch" />
+		<include refid="listSearch" />
 
 
 	</select>
@@ -67,14 +67,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		select * from project.member
 
-		<include refid="lsitSearch" />
+		<include refid="listSearch" />
 
 		limit #{startRow}, #{count}
 
 	</select>
 
 
-	<sql id="lsitSearch">
+	<sql id="listSearch">
 
 		<where>
 			<if test="searchType != null">
