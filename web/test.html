@@ -1,27 +1,19 @@
 <!DOCTYPE html>
 <html>
-<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<form action="">
-<div id="sortable">
-    <div>1</div>
-    <div>2</div>
-</div>
-</form>
-<script>
-    $(function () {
-
-        $("#sortable").sortable();
-
-        $("#sortable").disableSelection();
-
-    });
-</script>
-
-
-
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#datepicker").datepicker();
+            });
+        </script>
+    </head>
+    <body>
+    <p>Date : <input type="text" id="datepicker" value="08/26/2020"></p>
+    </body>
 </html>
+

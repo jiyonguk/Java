@@ -31,10 +31,5 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-		<!-- 파일 업로드 경로 : 회원 가입 시 회원 사진 업로드 경로 -->
-	<context-param>
-		<param-name>memberUploadPath</param-name>
-		<param-value>/upload/users</param-value>
-	</context-param>
 
 </web-app>

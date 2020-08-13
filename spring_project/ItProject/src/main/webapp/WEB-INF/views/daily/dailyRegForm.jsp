@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+<form method="post">
+	<input type="text" name="dloc">
+	<input type="submit">
+	</form>
 </body>
 </html>

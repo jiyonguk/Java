@@ -23,9 +23,8 @@ public class DailyRegService {
 	private SqlSessionTemplate sessionTemplate;
 
 	public int dailyReg(DailyRegRequest regRequest, HttpServletRequest request) {
-
 		dao = sessionTemplate.getMapper(DailyDaoInterface.class);
-
+		
 		int result = 0;
 
 		Daily daily = regRequest.toMember();
