@@ -8,8 +8,11 @@
 </head>
 <body>
 <form method="post">
-	<input type="text" name="dloc">
-	<input type="submit">
-	</form>
+		<input type="text" name="dloc">
+		<input type="text" name="">
+		<input type="text" name="">
+		<input type="text" name="">
+		<input type="text" name="">
+</form>
 </body>
 </html>

@@ -26,7 +26,7 @@ public class DailyRegService {
 		dao = sessionTemplate.getMapper(DailyDaoInterface.class);
 		
 		int result = 0;
-
+		System.out.println(regRequest.getDphoto());
 		Daily daily = regRequest.toMember();
 
 		try {
