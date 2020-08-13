@@ -1,8 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>text Limit</title>
 
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -116,9 +116,9 @@ function call(){
 
     curr.setDate(curr.getDate() + 1);
     console.log(curr.getFullYear()+'-'+curr.getMonth()+'-'+curr.getDate());
-    var plan = curr.getFullYear()+'-'+curr.getMonth()+'-'+curr.getDate();
+    var plan = '<div>'+curr.getFullYear()+'-'+curr.getMonth()+'-'+curr.getDate()+'</div>';
     
-    $('div').append(plan);
+    $('body').append(plan);
 
 }   
 
@@ -143,9 +143,8 @@ call( );
     <p>EndDate : <input type="text" id="datepicker2" name ="datepicker2" onchange="call()" autocomplete="off"></p>
     <div></div>
 </body>
-
-
 </html>
+
 
 
 
