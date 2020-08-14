@@ -1,5 +1,7 @@
 package com.aia.it.planner.service;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,6 +20,8 @@ public class PlannerRegService {
 	private SqlSessionTemplate sessionTemplate;
 	
 	public int plannerReg(Planner planner, HttpServletRequest request) {
+		
+		Date date = new Date(7, 5, 3);
 		
 		dao = sessionTemplate.getMapper(PlannerDaoInterface.class);
 		

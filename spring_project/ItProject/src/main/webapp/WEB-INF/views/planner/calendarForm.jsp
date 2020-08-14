@@ -110,19 +110,18 @@ function call(){
     console.log(betweenDay+1);
 
     console.log(curr.getFullYear()+'-'+curr.getMonth()+'-'+curr.getDate());
+    
+    var plan = '';
     while (betweenDay > 0) {
     betweenDay--;
 
 
     curr.setDate(curr.getDate() + 1);
     console.log(curr.getFullYear()+'-'+curr.getMonth()+'-'+curr.getDate());
-    var plan = '<div>'+curr.getFullYear()+'-'+curr.getMonth()+'-'+curr.getDate()+'</div>';
-    
+   	plan += '<div>'+curr.getFullYear()+'-'+curr.getMonth()+'-'+curr.getDate()+'</div>';
+	}   
+
     $('body').append(plan);
-
-}   
-
-
 }
 
 

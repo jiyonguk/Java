@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.aia.it.planner.dao.PlannerDaoInterface">
 
 	<insert id="insertPlanner"
-		parameterType="com.aia.it.daily.model.Planner" useGeneratedKeys="true"
+		parameterType="com.aia.it.planner.model.Planner" useGeneratedKeys="true"
 		keyProperty="pidx">
 
 
