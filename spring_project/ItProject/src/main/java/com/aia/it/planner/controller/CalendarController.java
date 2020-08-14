@@ -1,7 +1,5 @@
 package com.aia.it.planner.controller;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,11 +21,11 @@ public class CalendarController {
 		return "planner/calendarForm";
 	}
 	@RequestMapping(method = RequestMethod.POST)
-	public String getDailyReg (	@RequestParam("startdate") LocalDate startdate,
-								@RequestParam("enddate") LocalDate enddate,
+	public String getDate	 (	@RequestParam("datepicker") String startdate,
+								@RequestParam("datepicker2") String enddate,
 								Model model) {
 		
 		model.addAttribute("dateList", calService.getDateList(startdate, enddate));
-		return "planner/plannerReg";
+		return "planner/plannerRegForm";
 	}
 }

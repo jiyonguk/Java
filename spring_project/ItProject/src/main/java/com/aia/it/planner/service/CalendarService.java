@@ -9,23 +9,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalendarService {
 
-	public List<LocalDate> getDateList(LocalDate startdate, LocalDate enddate) {
+	public List<LocalDate> getDateList(String startdate, String enddate) {
 
 		List<LocalDate> dateList = new ArrayList<LocalDate>();
 
-		System.out.println(startdate);
-		System.out.println(enddate);
+	    LocalDate sdd = LocalDate.parse(startdate);
+	    LocalDate edd = LocalDate.parse(enddate);
 
-		int betweenday = enddate.getDayOfYear() - startdate.getDayOfYear();
+		int betweenday = edd.getDayOfYear() - sdd.getDayOfYear();
 
-		dateList.add(startdate);
+		dateList.add(sdd);
 
 		for (int i = 0; i < betweenday; i++) {
 
-			startdate = startdate.plusDays(1);
+			sdd = sdd.plusDays(1);
 
-			System.out.println(startdate);
-			dateList.add(startdate);
+			System.out.println(sdd);
+			dateList.add(sdd);
 
 		}
 
