@@ -9,9 +9,18 @@ public class DailyRegRequest {
 	private String dmsg;
 	private MultipartFile dphoto;
 	private String dtype;
+	private int pidx;
 	
 	public Daily toMember() {
-		return new Daily(dloc,dloclon,dloclat,dmsg,dtype);
+		return new Daily(dloc,dloclon,dloclat,dmsg,dtype,pidx);
+	}
+
+	public int getPidx() {
+		return pidx;
+	}
+
+	public void setPidx(int pidx) {
+		this.pidx = pidx;
 	}
 
 	public String getDloc() {
@@ -65,7 +74,7 @@ public class DailyRegRequest {
 	@Override
 	public String toString() {
 		return "DailyRegRequest [dloc=" + dloc + ", dloclon=" + dloclon + ", dloclat=" + dloclat + ", dmsg=" + dmsg
-				+ ", dphoto=" + dphoto + ", dtype=" + dtype + "]";
+				+ ", dphoto=" + dphoto + ", dtype=" + dtype + ", pidx=" + pidx + "]";
 	}
 	
 }

@@ -21,8 +21,6 @@ public class PlannerRegService {
 	
 	public int plannerReg(Planner planner, HttpServletRequest request) {
 		
-		Date date = new Date(7, 5, 3);
-		
 		dao = sessionTemplate.getMapper(PlannerDaoInterface.class);
 		
 		int result = 0;

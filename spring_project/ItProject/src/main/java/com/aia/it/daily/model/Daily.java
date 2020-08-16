@@ -8,12 +8,13 @@ public class Daily {
 	private String dmsg;
 	private String dphoto;
 	private String dtype;
+	private int pidx;
 
-	public Daily(String dloc, String dloclon, String dloclat, String dmsg, String dtype) {
-		this(0,dloc,dloclon,dloclat,dmsg,null,dtype);
+	public Daily(String dloc, String dloclon, String dloclat, String dmsg, String dtype, int pidx) {
+		this(0,dloc,dloclon,dloclat,dmsg,null,dtype,pidx);
 	}
 
-	public Daily(int didx, String dloc, String dloclon, String dloclat, String dmsg, String dphoto, String dtype) {
+	public Daily(int didx, String dloc, String dloclon, String dloclat, String dmsg, String dphoto, String dtype, int pidx) {
 		this.didx = didx;
 		this.dloc = dloc;
 		this.dloclon = dloclon;
@@ -21,6 +22,15 @@ public class Daily {
 		this.dmsg = dmsg;
 		this.dphoto = dphoto;
 		this.dtype = dtype;
+		this.pidx = pidx;
+	}
+
+	public int getPidx() {
+		return pidx;
+	}
+
+	public void setPidx(int pidx) {
+		this.pidx = pidx;
 	}
 
 	public int getDidx() {
@@ -82,7 +92,7 @@ public class Daily {
 	@Override
 	public String toString() {
 		return "Daily [didx=" + didx + ", dloc=" + dloc + ", dloclon=" + dloclon + ", dloclat=" + dloclat + ", dmsg="
-				+ dmsg + ", dphoto=" + dphoto + ", dtype=" + dtype + "]";
+				+ dmsg + ", dphoto=" + dphoto + ", dtype=" + dtype + ", pidx=" + pidx + "]";
 	}
 
 }

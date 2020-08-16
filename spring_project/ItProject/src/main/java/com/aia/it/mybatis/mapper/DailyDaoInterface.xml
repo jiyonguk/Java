@@ -11,9 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<![CDATA[      
-		INSERT INTO project.daily (dloc, dloclon, dloclat, dmsg, dphoto , dtype
+		INSERT INTO project.daily (dloc, dloclon, dloclat, dmsg, dphoto , dtype, pidx
 		)
-		VALUES (#{dloc},#{dloclon},#{dloclat},#{dmsg},#{dphoto},#{dtype})
+		VALUES (#{dloc},#{dloclon},#{dloclat},#{dmsg},#{dphoto},#{dtype},#{pidx})
 		
 		]]>
 

@@ -14,6 +14,7 @@ import com.aia.it.planner.service.PlannerRegService;
 @Controller
 @RequestMapping("/planner/plannerReg")
 public class PlannerRegController {
+	
 	@Autowired
 	PlannerRegService regService;
 	
@@ -22,9 +23,10 @@ public class PlannerRegController {
 		return "planner/plannerRegForm";
 	}
 	@RequestMapping(method = RequestMethod.POST)
-	public String getDailyReg (HttpServletRequest request,
+	public String getPlannerReg (HttpServletRequest request,
 								Planner planner,
 								Model model) {
+		System.out.println(planner);
 		model.addAttribute("result", regService.plannerReg(planner, request));
 		return "planner/plannerReg";
 	}

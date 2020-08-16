@@ -26,6 +26,8 @@ public class CalendarController {
 								Model model) {
 		
 		model.addAttribute("dateList", calService.getDateList(startdate, enddate));
+		model.addAttribute("startdate", startdate);
+		model.addAttribute("enddate", enddate);
 		return "planner/plannerRegForm";
 	}
 }

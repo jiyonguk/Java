@@ -172,22 +172,30 @@
 
 	//]]>
 </script>
-<title>Insert title here</title>
+<title>${startdate}/${enddate}</title>
 </head>
 <script>
 	
 </script>
 <body>
-<div id="sortable">
-<c:forEach items="${dateList}" var="list">
-	<div class="please">${list}
-		<div class="itembox"></div>
-		<div class="itembox"></div>
-		<div class="itembox"></div>
-		<div class="itembox"></div>
-	</div>
-</c:forEach>
-</div>
+	<form action="plannerReg" method="post">
+	<input type="text" name="uidx">
+	<input type="text" name="pstartdate" value="${startdate}">/<input type="text" name="penddate" value="${enddate}">
+	<input type="text" name="ptitle">
+		<div id="sortable">
+			<c:forEach items="${dateList}" var="list">
+				<div class="please" name="">${list}
+					<div class="itembox">
+						<a href="../daily/dailyReg">+</a>
+					</div>
+					<div class="itembox"></div>
+					<div class="itembox"></div>
+					<div class="itembox"></div>
+				</div>
+			</c:forEach>
+		</div>
+		<input type="submit" value="완료">
+	</form>
 </body>
 </html>
 

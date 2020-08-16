@@ -11,12 +11,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<![CDATA[      
-		INSERT INTO project.planner ( ptitle, pdate, uidx
+		INSERT INTO project.planner ( ptitle, pstartdate, penddate, uidx
 		)
-		VALUES (#{ptitle},#{pdate},#{uidx})
+		VALUES (#{ptitle},#{pstartdate},#{penddate},#{uidx})
 		
 		]]>
 
 	</insert>
+	
+	
+
 
 </mapper>
