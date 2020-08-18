@@ -138,8 +138,10 @@ call( );
     
 <body>
 <form method="post">
-    <p>StartDate : <input type="text" id="datepicker" name="datepicker" onchange="call()" autocomplete="off"></p>
-    <p>EndDate : <input type="text" id="datepicker2" name ="datepicker2" onchange="call()" autocomplete="off"></p>
+	<input type="text" value="1" name="uidx">
+	<input type="text" name="ptitle">
+    <p>StartDate : <input type="text" id="datepicker" name="pstartdate" onchange="call()" autocomplete="off"></p>
+    <p>EndDate : <input type="text" id="datepicker2" name ="penddate" onchange="call()" autocomplete="off"></p>
     <div></div>
     <input type="submit" value="완료">
     </form>

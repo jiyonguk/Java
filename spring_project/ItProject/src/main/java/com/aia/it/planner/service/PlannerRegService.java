@@ -1,6 +1,9 @@
 package com.aia.it.planner.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,14 +21,23 @@ public class PlannerRegService {
 	
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
-	
-	public int plannerReg(Planner planner, HttpServletRequest request) {
+
+
+
+	public int insertDate(Planner planner) {
+
+		int result = 0;
 		
 		dao = sessionTemplate.getMapper(PlannerDaoInterface.class);
 		
-		int result = 0;
+		result = dao.insertDate(planner);
 		
-		result = dao.insertPlanner(planner);
+		System.out.println("idx"+planner.getPidx());
+		
+		System.out.println(planner);
+		
+		System.out.println("idx"+planner.getPidx());
+		
 		
 		return result;
 	}

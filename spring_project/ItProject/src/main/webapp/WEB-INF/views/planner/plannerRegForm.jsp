@@ -172,21 +172,25 @@
 
 	//]]>
 </script>
-<title>${startdate}/${enddate}</title>
+<title>${planner.pstartdate}/${planner.penddate}</title>
 </head>
 <script>
 	
 </script>
 <body>
-	<form action="plannerReg" method="post">
-	<input type="text" name="uidx">
-	<input type="text" name="pstartdate" value="${startdate}">/<input type="text" name="penddate" value="${enddate}">
-	<input type="text" name="ptitle">
+	<input type="text" name="pidx" value="${planner.pidx}">
+	<input type="text" name="uidx" value="${planner.uidx}">
+	<input type="text" name="pstartdate" value="${planner.pstartdate}">/<input type="text" name="penddate" value="${planner.penddate}">
+	<input type="text" name="ptitle" value="${planner.ptitle}">
 		<div id="sortable">
-			<c:forEach items="${dateList}" var="list">
-				<div class="please" name="">${list}
+			<c:forEach items="${dateList}" var="date">
+				<div class="please" name="" style="background-color:white">${date}
 					<div class="itembox">
-						<a href="../daily/dailyReg">+</a>
+						<form action="../planner/plannerReg" method="post">
+							<input type="text" value="${date}" name="date">${date}
+							<input type="text" value="${planner.pidx}" name="pidx">${planner.pidx}
+							<input type="submit">
+						</form>
 					</div>
 					<div class="itembox"></div>
 					<div class="itembox"></div>
@@ -194,8 +198,6 @@
 				</div>
 			</c:forEach>
 		</div>
-		<input type="submit" value="완료">
-	</form>
 </body>
 </html>
 

@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- sql 설정 : sql문, 반환 타입, 파라미터 설정 -->
 <mapper namespace="com.aia.it.planner.dao.PlannerDaoInterface">
 
-	<insert id="insertPlanner"
+	<insert id="insertDate"
 		parameterType="com.aia.it.planner.model.Planner" useGeneratedKeys="true"
 		keyProperty="pidx">
 

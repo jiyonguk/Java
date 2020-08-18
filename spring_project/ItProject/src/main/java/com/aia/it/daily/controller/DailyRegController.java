@@ -21,6 +21,7 @@ public class DailyRegController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getDailyRegForm() {
+
 		return "daily/dailyRegForm";
 	}
 	@RequestMapping(method = RequestMethod.POST)
@@ -30,6 +31,6 @@ public class DailyRegController {
 		
 		System.out.println("controller : "+regRequest);
 		model.addAttribute("result", regService.dailyReg(regRequest, request));
-		return "daily/dailyReg";
+		return "/planner/plannerRegForm";
 	}
 }

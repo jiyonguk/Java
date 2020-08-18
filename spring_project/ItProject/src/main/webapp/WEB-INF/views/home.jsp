@@ -12,6 +12,7 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<a href="planner/calendar">planner</a>
+<a href="calendar/calendar">planner</a>
+<a href="kakaomap://route?sp=37.51119865054613,127.02165424220854&ep=37.5705756133826,126.98531278713301&by=PUBLICTRANSIT">kakao</a>
 </body>
 </html>

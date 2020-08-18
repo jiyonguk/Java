@@ -7,18 +7,6 @@ public class Planner {
 	private String penddate;
 	private int uidx;
 	
-	public Planner() {
-
-	}
-
-	public Planner(int pidx, String ptitle, String pstartdate, String penddate, int uidx) {
-		this.pidx = pidx;
-		this.ptitle = ptitle;
-		this.pstartdate = pstartdate;
-		this.penddate = penddate;
-		this.uidx = uidx;
-	}
-
 	public int getPidx() {
 		return pidx;
 	}

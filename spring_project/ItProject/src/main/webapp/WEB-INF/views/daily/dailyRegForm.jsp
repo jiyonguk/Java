@@ -7,8 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post">
+<form action="../daily/dailyReg" method="post">
+		${date}
+		${pidx}
 		<input type="text" name="dloc">
+		<input type="text" name="date" value="${date}">
+		<input type="text" name="pidx" value="${pidx}">
 		<input type="text" name="dloclon">
 		<input type="text" name="dloclat">
 		<input type="text" name="dmsg">

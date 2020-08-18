@@ -5,29 +5,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.aia.it.planner.model.Planner;
 import com.aia.it.planner.service.CalendarService;
+import com.aia.it.planner.service.PlannerRegService;
 
 @Controller
-@RequestMapping("/planner/calendar")
+@RequestMapping("/calendar/calendar")
 public class CalendarController {
-	
+
 	@Autowired
-	CalendarService calService;
-	
+	CalendarService calendarService;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String getCalendarForm() {
 		return "planner/calendarForm";
 	}
+
 	@RequestMapping(method = RequestMethod.POST)
-	public String getDate	 (	@RequestParam("datepicker") String startdate,
-								@RequestParam("datepicker2") String enddate,
-								Model model) {
-		
-		model.addAttribute("dateList", calService.getDateList(startdate, enddate));
-		model.addAttribute("startdate", startdate);
-		model.addAttribute("enddate", enddate);
+	public String plannerReg(Planner planner, Model model) {
+
+		model.addAttribute("result", calendarService.insertDate(planner));
+		model.addAttribute("planner", planner);
+		model.addAttribute("dateList", calendarService.getDateList(planner.getPstartdate(), planner.getPenddate()));
+
 		return "planner/plannerRegForm";
 	}
 }
